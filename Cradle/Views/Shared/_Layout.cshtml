@@ -1,0 +1,59 @@
+﻿<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>@ViewBag.Title</title>
+    @Styles.Render("~/Content/css")
+    @Scripts.Render("~/bundles/modernizr")
+
+</head>
+<body>
+    @* Header *@
+    <header>
+        <nav class="navbar navbar-default navbar-fixed-top">
+            <div class="col-sm-11">
+                <section id="login float-right">
+                    @Html.Partial("_LoginPartial")
+                </section>
+            </div>
+        </nav>
+    </header>
+    <div id="header" class="navbar-fixed-top">
+        <ul class="nav nav-pills menu-items col-sm-offset-3">
+            <li>@Html.ActionLink(Resources.Resource.meetDesigner, "Index", "Home")</li>
+            <li>@Html.ActionLink(Resources.Resource.designs, "Index", "Home")</li>
+            <li>@Html.ActionLink(Resources.Resource.justForYou, "Index", "Home")</li>
+            <li>@Html.ActionLink(Resources.Resource.aboutUs, "Index", "Home")</li>
+        </ul>
+    </div> 
+   
+    @* Body *@
+    <div id="body" class="content-wrapper">
+        <section class="main-content clear-fix">
+            @RenderBody()
+        </section>
+    </div>
+
+    @* Footer *@
+    <footer>
+        <div class="col-lg-12">
+            <div id="links" class="col-sm-offset-4">
+                <span>@Html.ActionLink(Resources.Resource.aboutUs, "About", "Home")</span>|
+                <span>@Html.ActionLink(Resources.Resource.contactUs, "About", "Home")</span>|
+                <span>@Html.ActionLink(Resources.Resource.termsOfUse, "About", "Home")</span>|
+                <span>@Html.ActionLink(Resources.Resource.investors, "About", "Home")</span>
+                <br />
+                <small class="col-sm-offset-2">Copyright 2016</small>
+            </div>
+
+        </div>
+    </footer>
+    
+    
+
+    @Scripts.Render("~/bundles/jquery")
+    @Scripts.Render("~/bundles/bootstrap")
+    @RenderSection("scripts", required: false)
+</body>
+</html>

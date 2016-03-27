@@ -1,0 +1,67 @@
+﻿<ul class="nav nav-tabs col-sm-12">
+    <li  class="active">
+        @Html.ActionLink("EXPLORE AND EXPERIMENT", "Index", "Home", null, new { data_toggle="tab", href="#exploreDiv"})
+    </li>
+    <li>
+        @Html.ActionLink("STYLE ON A BUDGET", "Index", "Home", null, new { data_toggle = "tab", href="#budgetStyleDiv" })
+    </li>
+    <li>
+        @Html.ActionLink("CUSTOM MADE", "Index", "Home", null, new { data_toggle = "tab", href="#customMadeDiv" })
+    </li>
+</ul>
+<div id="searchBox" class="tab-content col-sm-12 content-container">
+    @*<div id="searchBoxForm">*@
+        <div id="exploreDiv" class="tab-pane fade in active col-sm-9 col-sm-offset-1">
+            <div class="introMessage">
+                Browse through different designers depending on the keywords you enter
+            </div>
+            <input id="keyword-searchBox" type="search" class="form-control" 
+                   placeholder="Look for your inspiration, find new designers..." />
+        </div>
+        <div id="budgetStyleDiv" class="tab-pane fade col-sm-12">
+            <div class="introMessage">
+                Look for items or designers within your budget
+            </div>
+            <div class="col-sm-9">
+                <input id="keyword-budgetSearch" type="text" class="form-control"
+                       placeholder="What are you looking for (e.g. dress, shoes)?" />
+            </div>
+            <select class="col-sm-3">
+                <option selected="selected" value="Attire">Attire</option>
+                <option>Business</option>
+                <option>Casual</option>
+                <option>Formal</option>
+                <option>Semi-Formal</option>
+                <option>Smart Casual</option>
+            </select>
+            <div class="col-sm-9 col-sm-offset-1">
+                <input id="price-searchBox" type="text" class="form-control"
+                       placeholder="₱ Maximum price" />
+            </div>
+        </div>
+        <div id="customMadeDiv" class="tab-pane fade col-sm-9 col-sm-offset-1" >
+            <div class="introMessage">
+                Want something specially made for you?
+            </div>
+            <select class="col-sm-4">
+                <option selected="selected" value="Item">Item</option>
+                <option>Bags</option>
+                <option>Clothes</option>
+                <option>Shoes</option>
+            </select>
+            <select class="col-sm-7">
+                <option selected="selected" value="Location">Item is to be made in...</option>
+                <option>Metro Manila</option>
+            </select>
+        </div>
+        <div id="submit-search-btn" class="col-sm-4 col-sm-offset-4">
+            <button id="searchBtn-searchBox" type="submit" class="btn btn-default col-sm-12"
+                    aria-label="Left Align">
+                <span class="glyphicon glyphicon-search" aria-hidden="true"></span>
+                @Resources.Resource.exploreStyleSubmit
+            </button>
+        </div>
+        
+    @*</div>*@
+
+</div>

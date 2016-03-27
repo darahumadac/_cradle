@@ -1,0 +1,234 @@
+﻿@font-face {
+    font-family: caviar_dreams;
+    src: url(../fonts/Caviar_Dreams_Bold.ttf);
+}
+
+body{
+  font-family: caviar_dreams;
+}
+
+.content-wrapper{
+    margin-top: 90px;
+}
+
+h1{
+  font-family: caviar_dreams;
+  font-size: 8em;
+}
+
+#cradleDiv
+{
+    background: url('../img/216H.jpg') no-repeat;
+    background-size: cover;
+    color: #001D34;
+}
+
+#cradleLogo
+{
+    padding-top: 52px;
+    padding-left: 50px;
+}
+
+#taglineDiv
+{
+    font-size: 2em;
+    padding-left: 80px;
+}
+
+#logoDiv
+{
+    margin-left: -44px;
+    margin-top: -20px;
+}
+
+.jumbotron h1{
+  font-size: 85px;
+}
+
+.subtext{
+  padding-top: 20px;
+}
+
+.body-container{
+    height: 567px;
+}
+
+.content-container{
+    border: 2px solid #dddddd;
+    background-color: transparent;
+    border-radius: 4px;
+}
+
+#header, footer {
+background-color: #001D34;
+    color: white;
+    text-transform: uppercase;
+}
+
+#header{
+    /*margin-top: -30px;*/
+    margin-top: 50px;
+}
+
+#header .menu-items{
+    padding-left: 80px;
+}
+#header .menu-items li{
+    padding: 0px 10px 0px 10px;
+    margin:  0px -10px 0px 0px;
+    font-size: 14px; 
+}
+#header .menu-items li a{
+    background-color: transparent;
+    color: white;
+}
+#header .menu-items li a:hover{
+    color: #82C0F0;
+}
+#header .menu-items li a:focus{
+    color: white;
+}
+
+footer div{
+    height: 50px;
+}
+
+footer span{
+  margin: 10px;
+}
+
+#links{
+    padding-top: 5px;
+}
+
+#links span a
+{
+    color: white;
+    
+}
+
+#links span a:hover
+{
+    color: #82C0F0;
+    text-decoration: none;
+}
+
+/*SearchBoxPartial Styles*/
+
+#searchBox{
+    height: 195px;
+    /*padding-top: 50px;*/
+    padding-top: 15px;
+    width: 560px;
+}
+
+#searchBoxForm{
+    margin-top: 30px;
+}
+
+#searchBoxForm > div{
+    padding-left: 5px;
+    padding-right: 5px;
+}
+
+#searchBox .nav-tabs
+{
+    padding-left: 17px;
+}
+#searchBox .nav-tabs > li
+{
+    background-color: #ffffff;
+    color: #001D34;
+    border-radius: 4px 4px 0 0;
+    margin-right: 2px;
+}
+
+#searchBox .nav-tabs > li > a
+{
+    color:#001D34;
+    margin-right: 0px;
+}
+
+
+#searchBox .nav-tabs > li > a:hover, #searchBox .nav-tabs > li > a:focus,
+#searchBox .nav-tabs > li.active a, #searchBtn-searchBox{
+    background-color: #001D34;
+    border-color: #001D34;
+    font-weight:bold;
+    color: white;
+}
+
+.nav-tabs > li.active > a:hover{
+    cursor: pointer;
+}
+
+#searchBtn-searchBox:hover{
+    background-color: #ffffff;
+    border-color:#dddddd;
+    color:#555555;
+}
+
+#budgetStyleDiv > div, #budgetStyleDiv > select, #exploreDiv > input,
+#customMadeDiv > select
+{
+    margin-bottom: 10px;
+}
+
+#customMadeDiv > select{
+    margin-left: 15px;
+}
+
+select {
+    border: 1px solid #ccc;
+    border-radius: 4px;
+    height: 34px;
+}
+
+.introMessage{
+    margin-bottom: 15px;
+    text-align: center;
+}
+
+/*End SearchBoxPartial Styles*/
+
+
+/*Start:    MVC Default Styles*/
+
+/* Set padding to keep content from hitting the edges */
+.body-content {
+    padding-left: 15px;
+    padding-right: 15px;
+}
+
+/* Set width on the form input elements since they're 100% wide by default */
+/*input,
+select,
+textarea {
+    max-width: 280px;
+}*/
+
+/* styles for validation helpers */
+.field-validation-error {
+    color: #b94a48;
+}
+
+.field-validation-valid {
+    display: none;
+}
+
+input.input-validation-error {
+    border: 1px solid #b94a48;
+}
+
+input[type="checkbox"].input-validation-error {
+    border: 0 none;
+}
+
+.validation-summary-errors {
+    color: #b94a48;
+}
+
+.validation-summary-valid {
+    display: none;
+}
+/*End:  MVC Default Styles*/
