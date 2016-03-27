@@ -3,8 +3,10 @@
     src: url(../fonts/Caviar_Dreams_Bold.ttf);
 }
 
-body{
-  font-family: caviar_dreams;
+h1, h2, h3, h4, h5, h6, .h1, .h2, .h3, .h4, .h5, .h6,
+body
+{
+    font-family: caviar_dreams;
 }
 
 .content-wrapper{
@@ -21,6 +23,7 @@ h1{
     background: url('../img/216H.jpg') no-repeat;
     background-size: cover;
     color: #001D34;
+    overflow: auto;
 }
 
 #cradleLogo
@@ -49,9 +52,17 @@ h1{
   padding-top: 20px;
 }
 
+
+
 .body-container{
     height: 567px;
+    overflow: scroll;
 }
+
+/*.body-container > div, .body-container > div > form
+{
+    height: 100%;
+}*/
 
 .content-container{
     border: 2px solid #dddddd;

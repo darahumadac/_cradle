@@ -3,38 +3,126 @@
     ViewBag.Title = "Register";
 }
 
-<h2>@ViewBag.Title.</h2>
+<div id="registerDiv" class="body-container col-lg-12">
+    <div class="col-md-6">
+        @using (Html.BeginForm("Register", "Account", FormMethod.Post, new { @class = "form-horizontal", role = "form" }))
+        {
+            @Html.AntiForgeryToken()
+            <h3>Create your account</h3>
+            <hr />
+            @Html.ValidationSummary()
 
-@using (Html.BeginForm("Register", "Account", FormMethod.Post, new { @class = "form-horizontal", role = "form" }))
-{
-    @Html.AntiForgeryToken()
-    <h4>Create a new account.</h4>
-    <hr />
-    @Html.ValidationSummary()
-    <div class="form-group">
-        @Html.LabelFor(m => m.UserName, new { @class = "col-md-2 control-label" })
-        <div class="col-md-10">
-            @Html.TextBoxFor(m => m.UserName, new { @class = "form-control" })
-        </div>
+            <h4>Personal Information</h4>
+            <hr />
+            
+            //Personal Details
+            <div id="personalDetailsDiv" >
+                <div class="form-group">
+                    @Html.LabelFor(m => m.FirstName, new { @class = "col-md-2 control-label" })
+                    <div class="col-md-3">
+                        @Html.TextBoxFor(m => m.FirstName, new { @class = "form-control" })
+                    </div>
+                    @Html.LabelFor(m => m.LastName, new { @class = "col-md-2 control-label" })
+                    <div class="col-md-5">
+                        @Html.TextBoxFor(m => m.LastName, new { @class = "form-control" })
+                    </div>
+                </div>
+                <div class="form-group">
+                    @Html.LabelFor(m => m.City, new { @class = "col-md-2 control-label" })
+                    <div class="col-md-3">
+                        @Html.TextBoxFor(m => m.City, new { @class = "form-control" })
+                    </div>
+                    @Html.LabelFor(m => m.Country, new { @class = "col-md-2 control-label" })
+                    <div class="col-md-5">
+                        @Html.DropDownList("Country", new List<SelectListItem>
+                        {
+                            new SelectListItem { Text="Philippines", Value="PH" }
+                        }, new { @class = "col-md-12" })
+                    </div>
+                </div>
+                <div class="form-group">
+                    @Html.LabelFor(m => m.MobileNo, new { @class = "col-md-2 control-label" })
+                    <div class="col-md-5">
+                        @Html.TextBoxFor(m => m.MobileNo, new { @class = "form-control" })
+                    </div>
+                </div>
+            </div>
+            
+            <hr />
+            <h4>Account Information</h4>
+            <hr />
+            
+            //Acount Details
+            <div id="accountDetailsDiv">
+                <div class="form-group">
+                    @Html.LabelFor(m => m.MemberAccountType, new { @class = "col-md-2 control-label" })
+                    <div class="col-md-10">
+                        @foreach (var item in Enum.GetNames(typeof(Cradle.Models.AccountType)))
+                        {
+                            if(item.ToString().Equals(Cradle.Models.AccountType.Member.ToString()))
+                            {
+                               @Html.RadioButtonFor(m => m.MemberAccountType, item, new { @checked = "true"})
+                            }
+                            else
+                            {
+                                @Html.RadioButtonFor(m => m.MemberAccountType, item)
+                            }
+                            @Html.Label(item);
+                            <br />
+                        }
+                    </div>
+                </div>
+                <div class="form-group">
+                    @Html.LabelFor(m => m.UserName, new { @class = "col-md-2 control-label" })
+                    <div class="col-md-6">
+                        @Html.TextBoxFor(m => m.UserName, new { @class = "form-control" })
+                    </div>
+                </div>
+                <div class="form-group">
+                    @Html.LabelFor(m => m.Email, new { @class = "col-md-2 control-label" })
+                    <div class="col-md-6">
+                        @Html.TextBoxFor(m => m.Email, new { @class = "form-control" })
+                    </div>
+                </div>
+                <div class="form-group">
+                    @Html.LabelFor(m => m.Password, new { @class = "col-md-2 control-label" })
+                    <div class="col-md-6">
+                        @Html.PasswordFor(m => m.Password, new { @class = "form-control" })
+                    </div>
+                </div>
+                <div class="form-group">
+                    @Html.LabelFor(m => m.ConfirmPassword, new { @class = "col-md-2 control-label" })
+                    <div class="col-md-6">
+                        @Html.PasswordFor(m => m.ConfirmPassword, new { @class = "form-control" })
+                    </div>
+                </div>
+                
+            </div>
+            <div id="submitBtn">
+                <div class="form-group">
+                    <div class="col-md-offset-2 col-md-10">
+                        <input type="submit" class="btn btn-default" value="Register" />
+                    </div>
+                </div>
+            </div>
+            
+            
+        }
     </div>
-    <div class="form-group">
-        @Html.LabelFor(m => m.Password, new { @class = "col-md-2 control-label" })
-        <div class="col-md-10">
-            @Html.PasswordFor(m => m.Password, new { @class = "form-control" })
-        </div>
+    <div class="col-md-3">
+        <section id="socialLoginForm">
+            @Html.Partial("_ExternalLoginsListPartial", new { Action = "ExternalLogin", ReturnUrl = ViewBag.ReturnUrl })
+        </section>
     </div>
-    <div class="form-group">
-        @Html.LabelFor(m => m.ConfirmPassword, new { @class = "col-md-2 control-label" })
-        <div class="col-md-10">
-            @Html.PasswordFor(m => m.ConfirmPassword, new { @class = "form-control" })
-        </div>
+    <div class="col-md-3">
+        <section id="registrationInfoDiv">
+           Why Register?
+        </section>
     </div>
-    <div class="form-group">
-        <div class="col-md-offset-2 col-md-10">
-            <input type="submit" class="btn btn-default" value="Register" />
-        </div>
-    </div>
-}
+</div>
+
+
+
 
 @section Scripts {
     @Scripts.Render("~/bundles/jqueryval")
