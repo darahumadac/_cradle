@@ -78,7 +78,17 @@ namespace Cradle.Controllers
         {
             if (ModelState.IsValid)
             {
-                var user = new ApplicationUser() { UserName = model.UserName };
+                var user = new ApplicationUser() 
+                { 
+                    FirstName = model.FirstName,
+                    LastName = model.LastName,
+                    City = model.City,
+                    Country = model.Country,
+                    MobileNo = model.MobileNo,
+                    MemberAccountType = model.MemberAccountType,
+                    UserName = model.UserName, 
+                    Email = model.Email
+                };
                 var result = await UserManager.CreateAsync(user, model.Password);
                 if (result.Succeeded)
                 {
