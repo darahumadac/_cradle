@@ -26,5 +26,21 @@ namespace Cradle.Controllers
 
             return View();
         }
+
+        public ActionResult Designers()
+        {
+            return View();
+        }
+
+        public ActionResult Lookbook()
+        {
+            return View();
+        }
+
+        [ActionName("Custom-Made")]
+        public ActionResult CustomMade()
+        {
+            return View();
+        }
     }
 }

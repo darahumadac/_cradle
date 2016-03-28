@@ -12,6 +12,12 @@
     @* Header *@
     <header>
         <nav class="navbar navbar-default navbar-fixed-top">
+            <div class="col-sm-1">
+                <ul class="nav navbar-nav">
+                    <li style="font-size: 2em;">@Html.ActionLink("Cradle", "Index", "Home")</li>
+                </ul>
+                
+            </div>
             <div class="col-sm-11">
                 <section id="login float-right">
                     @Html.Partial("_LoginPartial")
@@ -21,10 +27,10 @@
     </header>
     <div id="header" class="navbar-fixed-top">
         <ul class="nav nav-pills menu-items col-sm-offset-3">
-            <li>@Html.ActionLink(Resources.Resource.meetDesigner, "Index", "Home")</li>
-            <li>@Html.ActionLink(Resources.Resource.designs, "Index", "Home")</li>
-            <li>@Html.ActionLink(Resources.Resource.justForYou, "Index", "Home")</li>
-            <li>@Html.ActionLink(Resources.Resource.aboutUs, "Index", "Home")</li>
+            <li>@Html.ActionLink(Resources.Resource.meetDesigner, "Designers", "Home")</li>
+            <li>@Html.ActionLink(Resources.Resource.designs, "Lookbook", "Home")</li>
+            <li>@Html.ActionLink(Resources.Resource.justForYou, "Custom-Made", "Home")</li>
+            <li>@Html.ActionLink(Resources.Resource.aboutUs, "About", "Home")</li>
         </ul>
     </div> 
    
@@ -40,7 +46,7 @@
         <div class="col-lg-12">
             <div id="links" class="col-sm-offset-4">
                 <span>@Html.ActionLink(Resources.Resource.aboutUs, "About", "Home")</span>|
-                <span>@Html.ActionLink(Resources.Resource.contactUs, "About", "Home")</span>|
+                <span>@Html.ActionLink(Resources.Resource.contactUs, "Contact", "Home")</span>|
                 <span>@Html.ActionLink(Resources.Resource.termsOfUse, "About", "Home")</span>|
                 <span>@Html.ActionLink(Resources.Resource.investors, "About", "Home")</span>
                 <br />

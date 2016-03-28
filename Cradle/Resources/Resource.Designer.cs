@@ -79,7 +79,7 @@ namespace Resources {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Designs.
+        ///   Looks up a localized string similar to Lookbook.
         /// </summary>
         public static string designs {
             get {
