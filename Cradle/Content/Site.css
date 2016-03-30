@@ -18,6 +18,10 @@ h1{
   font-size: 8em;
 }
 
+.center{
+    text-align: center;
+}
+
 #cradleDiv
 {
     background: url('../img/216H.jpg') no-repeat;
