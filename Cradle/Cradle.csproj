@@ -168,10 +168,24 @@
       <DependentUpon>201603271347389_New Fields.cs</DependentUpon>
     </Compile>
     <Compile Include="Migrations\Configuration.cs" />
+    <Compile Include="Models\Account.cs" />
     <Compile Include="Models\AccountViewModels.cs" />
-    <Compile Include="Models\DesignerViewModels.cs" />
+    <Compile Include="Models\Address.cs" />
+    <Compile Include="Models\ContactNumber.cs" />
+    <Compile Include="Models\Designer.cs" />
+    <Compile Include="Models\DesignerProfile.cs" />
+    <Compile Include="Models\Enums\Attire.cs" />
+    <Compile Include="Models\Enums\DeliveryOptions.cs" />
+    <Compile Include="Models\Enums\Gender.cs" />
+    <Compile Include="Models\Enums\ItemType.cs" />
+    <Compile Include="Models\Enums\PaymentType.cs" />
+    <Compile Include="Models\Enums\Role.cs" />
     <Compile Include="Models\IdentityModels.cs" />
-    <Compile Include="Models\MemberViewModels.cs" />
+    <Compile Include="Models\Member.cs" />
+    <Compile Include="Models\PersonalProfile.cs" />
+    <Compile Include="Models\Profile.cs" />
+    <Compile Include="Models\RegisteredUser.cs" />
+    <Compile Include="Models\Statistics.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Resources\Resource.Designer.cs">
       <AutoGen>True</AutoGen>
