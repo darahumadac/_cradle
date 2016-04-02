@@ -172,7 +172,6 @@
     <Compile Include="Models\DesignerViewModels.cs" />
     <Compile Include="Models\IdentityModels.cs" />
     <Compile Include="Models\MemberViewModels.cs" />
-    <Compile Include="Models\UserModel.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Resources\Resource.Designer.cs">
       <AutoGen>True</AutoGen>
