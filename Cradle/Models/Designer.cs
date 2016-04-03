@@ -9,6 +9,7 @@ namespace Cradle.Models
     public class Designer : RegisteredUser
     {
         public DesignerProfile BusinessProfile { get; set; }
+        public Collection Collection { get; set; }
 
         public Designer()
         {
