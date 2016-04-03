@@ -7,6 +7,7 @@ namespace Cradle.Models
 {
     public class Order
     {
+        public int OrderID { get; set; }
         public int OrderItem { get; set; }
         public int Quantity { get; set; }
         public Payment PaymentDetails { get; set; }

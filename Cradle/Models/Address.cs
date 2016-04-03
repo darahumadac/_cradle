@@ -7,6 +7,7 @@ namespace Cradle.Models
 {
     public class Address
     {
+        public string AddressID { get; set; }
         public string StreetNo { get; set; }
         public string StreetName { get; set; }
         public string Municipality { get; set; }

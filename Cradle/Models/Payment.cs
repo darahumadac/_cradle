@@ -8,6 +8,7 @@ namespace Cradle.Models
 {
     public class Payment
     {
+        public int PaymentID { get; set; }
         public PaymentType PaymentOption { get; set; }
         public PaymentDetail PaymentDetails { get; set; }
     }

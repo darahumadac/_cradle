@@ -8,6 +8,7 @@ namespace Cradle.Models
 {
     public class Delivery
     {
+        public int DeliveryID { get; set; }
         public DeliveryOptions DeliveryOptions { get; set; }
         public Address DeliveryAddress { get; set; }
 

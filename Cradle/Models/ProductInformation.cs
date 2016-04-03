@@ -8,6 +8,7 @@ namespace Cradle.Models
 {
     public class ProductInformation
     {
+        public int ProductInformationID { get; set; }
         public string ProductName { get; set; }
         public string Description { get; set; }
         public List<Gender> ForGenders { get; set; }

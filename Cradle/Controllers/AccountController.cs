@@ -15,17 +15,32 @@ namespace Cradle.Controllers
     [Authorize]
     public class AccountController : Controller
     {
+
+        #region ApplicationUser AccountController
+        //public AccountController()
+        //    : this(new UserManager<ApplicationUser>(new UserStore<ApplicationUser>(new ApplicationDbContext())))
+        //{
+        //}
+
+        //public AccountController(UserManager<ApplicationUser> userManager)
+        //{
+        //    UserManager = userManager;
+        //}
+
+        //public UserManager<ApplicationUser> UserManager { get; private set; }
+        #endregion
+
         public AccountController()
-            : this(new UserManager<ApplicationUser>(new UserStore<ApplicationUser>(new ApplicationDbContext())))
+            : this(new UserManager<Account>(new UserStore<Account>(new CradleDbContext())))
         {
         }
 
-        public AccountController(UserManager<ApplicationUser> userManager)
+        public AccountController(UserManager<Account> userManager)
         {
             UserManager = userManager;
         }
 
-        public UserManager<ApplicationUser> UserManager { get; private set; }
+        public UserManager<Account> UserManager { get; private set; }
 
         //
         // GET: /Account/Login
@@ -78,20 +93,18 @@ namespace Cradle.Controllers
         {
             if (ModelState.IsValid)
             {
-                var user = new ApplicationUser() 
+                var user = new Account() 
                 { 
-                    FirstName = model.FirstName,
-                    LastName = model.LastName,
-                    City = model.City,
-                    Country = model.Country,
-                    MobileNo = model.MobileNo,
-                    MemberAccountType = model.MemberAccountType,
-                    UserName = model.UserName, 
-                    Email = model.Email
+                    UserName = model.UserName,
+                    EmailAddress = model.Email,
+                    IsActive = true,
+                    FailedLoginCount = 0
+                    
                 };
                 var result = await UserManager.CreateAsync(user, model.Password);
                 if (result.Succeeded)
                 {
+                   
                     await SignInAsync(user, isPersistent: false);
                     return RedirectToAction("Index", "Home");
                 }
@@ -275,7 +288,7 @@ namespace Cradle.Controllers
                 {
                     return View("ExternalLoginFailure");
                 }
-                var user = new ApplicationUser() { UserName = model.UserName };
+                var user = new Account() { UserName = model.UserName };
                 var result = await UserManager.CreateAsync(user);
                 if (result.Succeeded)
                 {
@@ -341,7 +354,7 @@ namespace Cradle.Controllers
             }
         }
 
-        private async Task SignInAsync(ApplicationUser user, bool isPersistent)
+        private async Task SignInAsync(Account user, bool isPersistent)
         {
             AuthenticationManager.SignOut(DefaultAuthenticationTypes.ExternalCookie);
             var identity = await UserManager.CreateIdentityAsync(user, DefaultAuthenticationTypes.ApplicationCookie);

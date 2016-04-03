@@ -1,4 +1,5 @@
-﻿using System.Collections.Generic;
+﻿using Cradle.Models.Enums;
+using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
 
 namespace Cradle.Models
@@ -90,7 +91,7 @@ namespace Cradle.Models
 
         [Required]
         [Display(Name = "Register As")]
-        public AccountType MemberAccountType { get; set; }
+        public Role MemberAccountType { get; set; }
       
     }
 

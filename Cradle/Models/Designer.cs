@@ -3,17 +3,13 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Web;
 using Cradle.Models.Enums;
+using System.ComponentModel.DataAnnotations.Schema;
 
 namespace Cradle.Models
 {
     public class Designer : RegisteredUser
     {
-        public DesignerProfile BusinessProfile { get; set; }
-        public Collection Collection { get; set; }
-
-        public Designer()
-        {
-            this.Role = Role.Designer;
-        }
+        public DesignerProfile DesignerProfile { get; set; }
+        //public List<Collection> Collection { get; set; }
     }
 }
