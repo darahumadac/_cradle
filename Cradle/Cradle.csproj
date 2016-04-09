@@ -165,21 +165,9 @@
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
-    <Compile Include="Migrations\201604030851581_CreateDatabase.cs" />
-    <Compile Include="Migrations\201604030851581_CreateDatabase.Designer.cs">
-      <DependentUpon>201604030851581_CreateDatabase.cs</DependentUpon>
-    </Compile>
-    <Compile Include="Migrations\201604031415504_OrdersTables.cs" />
-    <Compile Include="Migrations\201604031415504_OrdersTables.Designer.cs">
-      <DependentUpon>201604031415504_OrdersTables.cs</DependentUpon>
-    </Compile>
-    <Compile Include="Migrations\201604031427011_AddCollectionTableToDesignerProfile.cs" />
-    <Compile Include="Migrations\201604031427011_AddCollectionTableToDesignerProfile.Designer.cs">
-      <DependentUpon>201604031427011_AddCollectionTableToDesignerProfile.cs</DependentUpon>
-    </Compile>
-    <Compile Include="Migrations\201604031439281_UpdateProductInformation.cs" />
-    <Compile Include="Migrations\201604031439281_UpdateProductInformation.Designer.cs">
-      <DependentUpon>201604031439281_UpdateProductInformation.cs</DependentUpon>
+    <Compile Include="Migrations\201604091235186_CreateDatabase_v2.0.cs" />
+    <Compile Include="Migrations\201604091235186_CreateDatabase_v2.0.Designer.cs">
+      <DependentUpon>201604091235186_CreateDatabase_v2.0.cs</DependentUpon>
     </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Models\Account.cs" />
@@ -193,10 +181,9 @@
     <Compile Include="Models\ContactNumber.cs">
       <SubType>Code</SubType>
     </Compile>
+    <Compile Include="Models\CradleUserManager.cs" />
+    <Compile Include="Models\CradleUserStore.cs" />
     <Compile Include="Models\Delivery.cs">
-      <SubType>Code</SubType>
-    </Compile>
-    <Compile Include="Models\Designer.cs">
       <SubType>Code</SubType>
     </Compile>
     <Compile Include="Models\DesignerProfile.cs">
@@ -204,19 +191,20 @@
     </Compile>
     <Compile Include="Models\Enums\Attire.cs" />
     <Compile Include="Models\Enums\DeliveryOptions.cs" />
+    <Compile Include="Models\Enums\DeliveryStatus.cs" />
     <Compile Include="Models\Enums\Gender.cs" />
     <Compile Include="Models\Enums\ItemType.cs" />
+    <Compile Include="Models\Enums\OrderStatus.cs" />
+    <Compile Include="Models\Enums\PaymentStatus.cs" />
     <Compile Include="Models\Enums\PaymentType.cs" />
     <Compile Include="Models\Enums\Role.cs" />
-    <Compile Include="Models\IdentityModels.cs">
-      <SubType>Code</SubType>
-    </Compile>
     <Compile Include="Models\Item.cs">
       <SubType>Code</SubType>
     </Compile>
     <Compile Include="Models\Order.cs">
       <SubType>Code</SubType>
     </Compile>
+    <Compile Include="Models\OrderItem.cs" />
     <Compile Include="Models\Payment.cs">
       <SubType>Code</SubType>
     </Compile>
@@ -230,9 +218,6 @@
       <SubType>Code</SubType>
     </Compile>
     <Compile Include="Models\Profile.cs">
-      <SubType>Code</SubType>
-    </Compile>
-    <Compile Include="Models\RegisteredUser.cs">
       <SubType>Code</SubType>
     </Compile>
     <Compile Include="Models\Statistics.cs">
@@ -317,17 +302,8 @@
     <None Include="Project_Readme.html" />
   </ItemGroup>
   <ItemGroup>
-    <EmbeddedResource Include="Migrations\201604030851581_CreateDatabase.resx">
-      <DependentUpon>201604030851581_CreateDatabase.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="Migrations\201604031415504_OrdersTables.resx">
-      <DependentUpon>201604031415504_OrdersTables.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="Migrations\201604031427011_AddCollectionTableToDesignerProfile.resx">
-      <DependentUpon>201604031427011_AddCollectionTableToDesignerProfile.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="Migrations\201604031439281_UpdateProductInformation.resx">
-      <DependentUpon>201604031439281_UpdateProductInformation.cs</DependentUpon>
+    <EmbeddedResource Include="Migrations\201604091235186_CreateDatabase_v2.0.resx">
+      <DependentUpon>201604091235186_CreateDatabase_v2.0.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Resources\Resource.en-US.resx" />
     <EmbeddedResource Include="Resources\Resource.resx">

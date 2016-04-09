@@ -7,13 +7,13 @@ namespace Cradle.Migrations
     using System.Resources;
     
     [GeneratedCode("EntityFramework.Migrations", "6.0.0-20911")]
-    public sealed partial class AddCollectionTableToDesignerProfile : IMigrationMetadata
+    public sealed partial class CreateDatabase_v20 : IMigrationMetadata
     {
-        private readonly ResourceManager Resources = new ResourceManager(typeof(AddCollectionTableToDesignerProfile));
+        private readonly ResourceManager Resources = new ResourceManager(typeof(CreateDatabase_v20));
         
         string IMigrationMetadata.Id
         {
-            get { return "201604031427011_AddCollectionTableToDesignerProfile"; }
+            get { return "201604091235186_CreateDatabase_v2.0"; }
         }
         
         string IMigrationMetadata.Source

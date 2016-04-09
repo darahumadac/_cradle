@@ -11,5 +11,6 @@ namespace Cradle.Models
         public int PaymentID { get; set; }
         public PaymentType PaymentOption { get; set; }
         public PaymentDetail PaymentDetails { get; set; }
+        public PaymentStatus PaymentStatus { get; set; }
     }
 }

@@ -16,31 +16,19 @@ namespace Cradle.Controllers
     public class AccountController : Controller
     {
 
-        #region ApplicationUser AccountController
-        //public AccountController()
-        //    : this(new UserManager<ApplicationUser>(new UserStore<ApplicationUser>(new ApplicationDbContext())))
-        //{
-        //}
-
-        //public AccountController(UserManager<ApplicationUser> userManager)
-        //{
-        //    UserManager = userManager;
-        //}
-
-        //public UserManager<ApplicationUser> UserManager { get; private set; }
-        #endregion
-
-        public AccountController()
-            : this(new UserManager<Account>(new UserStore<Account>(new CradleDbContext())))
+        public AccountController() 
+            : this(new CradleUserManager(new CradleUserStore(new CradleDbContext())))
         {
+            
         }
 
-        public AccountController(UserManager<Account> userManager)
+
+        public AccountController(CradleUserManager userManager)
         {
             UserManager = userManager;
         }
 
-        public UserManager<Account> UserManager { get; private set; }
+        public CradleUserManager UserManager { get; private set; }
 
         //
         // GET: /Account/Login
@@ -97,14 +85,111 @@ namespace Cradle.Controllers
                 { 
                     UserName = model.UserName,
                     EmailAddress = model.Email,
+                    Role = model.MemberAccountType,
+                    SecurityQuestion = model.SecurityQuestion,
+                    SecurityAnswer = model.SecurityAnswer,
                     IsActive = true,
                     FailedLoginCount = 0
-                    
                 };
+
                 var result = await UserManager.CreateAsync(user, model.Password);
+
                 if (result.Succeeded)
                 {
-                   
+                    //Add Address
+                    var userAddress = new Address()
+                    {
+                        City = model.City,
+                        Country = model.Country,
+                        Municipality = "Municipality",
+                        StreetName = "streetname",
+                        StreetNo = "123",
+                        ZipCode = "1550"
+                    };
+                    UserManager.UserStore.AddAddress(userAddress);
+
+                    //Add Personal Profile
+                    var userProfile = new PersonalProfile()
+                    {
+                        PersonalProfileId = user.Id,
+                        FirstName = model.FirstName,
+                        LastName = model.LastName,
+                        Country = model.Country,
+                        City = model.City,
+                        Birthdate = model.BirthDate,
+                        Address = userAddress
+                    };
+
+                    UserManager.UserStore.AddPersonalProfile(userProfile);
+
+                    //Add Contact No
+                    var personalContact = new ContactNumber()
+                    {
+                        MobileNo = model.MobileNo,
+                        PersonalProfile = userProfile
+                    };
+                    UserManager.UserStore.AddContactNo(personalContact);
+
+                    if(model.MemberAccountType == Models.Enums.Role.Designer)
+                    {
+                        var designerProfile = new DesignerProfile()
+                        {
+                            //test data. Dev purposes only
+                            DesignerProfileID = user.Id,
+                            Address = userAddress,
+                            Birthdate = new DateTime(1992, 6, 28),
+                            BusinessEmailAddress = "darahfumadac@gmail.com",
+                            BusinessName = "Darah's business",
+                            ContactNumber = new List<ContactNumber>() { new ContactNumber{MobileNo = "1234"} },
+                            ProfileStats = new Statistics()
+                            {
+                                AveRating = 0,
+                                LikeCount = 0,
+                                TagCount = 0,
+                                ViewCount = 0
+                            }
+
+                        };
+
+                        UserManager.UserStore.AddDesignerProfile(designerProfile);
+
+                    }
+
+
+
+                }
+
+                
+
+                
+                
+                
+                if (result.Succeeded)
+                {
+                   ////Create Personal Profile
+                   // var userProfile = new PersonalProfile()
+                   // {
+                   //     FirstName = model.FirstName,
+                   //     LastName = model.LastName,
+                   //     City = model.City,
+                   //     Country = model.Country,
+                   //     Birthdate = model.BirthDate
+                   // };
+                   // context.PersonalProfiles.Add(userProfile);
+                   // var personalProfileResult = await context.SaveChangesAsync();
+
+                   // if(personalProfileResult == 1)
+                   // {
+                   //     ContactNumber number = new ContactNumber()
+                   //     {
+                   //         MobileNo = model.MobileNo
+                   //     };
+                        
+                   //     context.ContactNumbers.Add(number);
+                   //     var contactNoResult = await context.SaveChangesAsync();
+
+                   // }
+
                     await SignInAsync(user, isPersistent: false);
                     return RedirectToAction("Index", "Home");
                 }

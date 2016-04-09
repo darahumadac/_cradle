@@ -11,6 +11,7 @@ namespace Cradle.Models
         public int DeliveryID { get; set; }
         public DeliveryOptions DeliveryOptions { get; set; }
         public Address DeliveryAddress { get; set; }
+        public DeliveryStatus DeliveryStatus { get; set; }
 
     }
 }

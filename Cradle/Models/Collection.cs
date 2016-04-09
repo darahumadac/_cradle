@@ -7,7 +7,7 @@ namespace Cradle.Models
 {
     public class Collection
     {
-        public string CollectionID { get; set; }
+        public int CollectionID { get; set; }
         public ProductInformation CollectionInfo { get; set; }
         public string ThemeKeywords { get; set; }
         public decimal MinPrice { get; set; }

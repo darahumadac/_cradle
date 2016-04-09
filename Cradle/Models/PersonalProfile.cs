@@ -9,13 +9,13 @@ namespace Cradle.Models
 {
     public class PersonalProfile : Profile
     {
-        [Key, ForeignKey("User")]
-        public string RegisteredUserID { get; set; }
+        [Key, ForeignKey("Account")]
+        public string PersonalProfileId { get; set; }
         public string FirstName { get; set; }
         public string LastName { get; set; }
         public string City { get; set; }
         public string Country { get; set; }
 
-        public virtual RegisteredUser User { get; set; }
+        public virtual Account Account { get; set; }
     }
 }
