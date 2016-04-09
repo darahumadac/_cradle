@@ -159,37 +159,8 @@ namespace Cradle.Controllers
 
                 }
 
-                
-
-                
-                
-                
                 if (result.Succeeded)
                 {
-                   ////Create Personal Profile
-                   // var userProfile = new PersonalProfile()
-                   // {
-                   //     FirstName = model.FirstName,
-                   //     LastName = model.LastName,
-                   //     City = model.City,
-                   //     Country = model.Country,
-                   //     Birthdate = model.BirthDate
-                   // };
-                   // context.PersonalProfiles.Add(userProfile);
-                   // var personalProfileResult = await context.SaveChangesAsync();
-
-                   // if(personalProfileResult == 1)
-                   // {
-                   //     ContactNumber number = new ContactNumber()
-                   //     {
-                   //         MobileNo = model.MobileNo
-                   //     };
-                        
-                   //     context.ContactNumbers.Add(number);
-                   //     var contactNoResult = await context.SaveChangesAsync();
-
-                   // }
-
                     await SignInAsync(user, isPersistent: false);
                     return RedirectToAction("Index", "Home");
                 }
