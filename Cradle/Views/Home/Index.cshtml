@@ -1,7 +1,15 @@
 ﻿@{
     ViewBag.Title = "Home Page";
 }
-
+<div id="fb-root"></div>
+<script>
+(function (d, s, id) {
+    var js, fjs = d.getElementsByTagName(s)[0];
+    if (d.getElementById(id)) return;
+    js = d.createElement(s); js.id = id;
+    js.src = "//connect.facebook.net/en_US/sdk.js#xfbml=1&version=v2.5&appId=1525940844377890";
+    fjs.parentNode.insertBefore(js, fjs);
+}(document, 'script', 'facebook-jssdk'));</script>
 <div id="cradleDiv" class="body-container col-lg-12">
     <div id="cradleLogo" class="col-sm-offset-6">
         <h1>Cradle</h1>
@@ -17,4 +25,13 @@
     <div id="searchBox" class="col-sm-offset-6">
         @Html.Partial("_SearchBoxPartial")
     </div>
+    <div id="socialMediaDiv" class="col-sm-offset-6 col-sm-5">
+        <div class="fb-like" data-href="http://localhost:81" 
+             data-layout="button_count" 
+             data-action="like" 
+             data-show-faces="true" 
+             data-share="true">
+        </div>
+    </div>
+   
 </div>

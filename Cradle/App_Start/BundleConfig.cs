@@ -25,7 +25,10 @@ namespace Cradle
 
             bundles.Add(new StyleBundle("~/Content/css").Include(
                       "~/Content/bootstrap.css",
-                      "~/Content/site.css"));
+                      "~/Content/site.css",
+                      "~/Content/font-awesome.css",
+                      "~/Content/bootstrap-social.css"
+                      ));
 
             bundles.Add(new ScriptBundle("~/bundles/register").Include(
                     "~/Scripts/register.js"

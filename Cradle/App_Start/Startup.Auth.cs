@@ -1,6 +1,7 @@
 ﻿using Microsoft.AspNet.Identity;
 using Microsoft.Owin;
 using Microsoft.Owin.Security.Cookies;
+using Microsoft.Owin.Security.Google;
 using Owin;
 
 namespace Cradle
@@ -28,11 +29,14 @@ namespace Cradle
             //   consumerKey: "",
             //   consumerSecret: "");
 
-            //app.UseFacebookAuthentication(
-            //   appId: "",
-            //   appSecret: "");
+            app.UseFacebookAuthentication(
+               appId: "1525940844377890",
+               appSecret: "9fe0027a6015e6dd72861486bef8f74c");
 
-            //app.UseGoogleAuthentication();
+            app.UseGoogleAuthentication(
+                 clientId: "382069421278-bbt295b12rtse6il2lstekf314ecvakb.apps.googleusercontent.com",
+                clientSecret: "mAo_Z5jH2C2LUI9m4pXzwPym"
+            );
         }
     }
 }
