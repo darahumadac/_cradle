@@ -9,9 +9,6 @@ namespace Cradle.Models
 {
     public class CradleUserStore : UserStore<Account>
     {
-        public DbSet<Account> Accounts { get; set; }
-        public DbSet<DesignerProfile> RegisteredUsers { get; set; }
-        public DbSet<PersonalProfile> PersonalProfiles { get; set; }
         private CradleDbContext _context;
 
         public CradleUserStore(CradleDbContext context) : base(context)
@@ -46,6 +43,11 @@ namespace Cradle.Models
         {
             _context.ContactNumbers.Add(personalContact);
             _context.SaveChanges();
+        }
+
+        public DbSet<SecurityQuestions> GetSecurityQuestions()
+        {
+            return _context.SecurityQuestions;
         }
     }
 }

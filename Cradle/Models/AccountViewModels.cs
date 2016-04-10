@@ -2,6 +2,7 @@
 using System;
 using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
+using System.Data.Entity;
 
 namespace Cradle.Models
 {
@@ -46,8 +47,21 @@ namespace Cradle.Models
         public bool RememberMe { get; set; }
     }
 
-    public class RegisterViewModel
+    public class RegisterViewModel : IValidatableObject
     {
+
+        private CradleDbContext _context;
+
+        public RegisterViewModel()
+        {
+            _context = new CradleDbContext();
+            SecurityQuestions = _context.SecurityQuestions;
+            BirthDate = DateTime.Today;
+            DateEstablished = DateTime.Today;
+
+        }
+
+        #region Account Profile
         //Account Profile
         [Required]
         [Display(Name = "E-mail")]
@@ -77,12 +91,14 @@ namespace Cradle.Models
         [Required]
         [Display(Name = "Security Question")]
         public int SecurityQuestion { get; set; }
+        public DbSet<SecurityQuestions> SecurityQuestions { get; set; }
 
         [Required]
         [Display(Name = "Answer")]
         public string SecurityAnswer { get; set; }
+        #endregion
 
-
+        #region Personal Profile
         //Personal Profile
         [Required]
         [Display(Name="First Name")]
@@ -102,6 +118,8 @@ namespace Cradle.Models
 
         [Required]
         [Display(Name = "Birth Date")]
+        [DataType(DataType.Date)]
+        [DisplayFormat(DataFormatString = "{0:yyyy-MM-dd}", ApplyFormatInEditMode = true)]
         public DateTime BirthDate { get; set; }
 
         [Required]
@@ -109,16 +127,109 @@ namespace Cradle.Models
         [DataType(DataType.PhoneNumber)]
         public string MobileNo { get; set; }
 
-        
+        [Required]
+        [Display(Name = "Landline Number")]
+        [DataType(DataType.PhoneNumber)]
+        public string LandlineNo { get; set; }
 
-        
-      
+        #endregion
+
+        #region Business Profile
+        [Display(Name = "Designer Label Name")]
+        public string BusinessName { get; set; }
+
+        [Display(Name = "Street No.")]
+        public string StreetNo { get; set; }
+
+        [Display(Name = "Street Name")]
+        public string StreetName { get; set; }
+
+        [Display(Name = "Barangay")]
+        public string Municipality { get; set; }
+
+        [Display(Name = "City/Province")]
+        public string BusinessCity { get; set; }
+
+        [Display(Name = "Main Country of Operation")]
+        public string BusinessCountry { get; set; }
+
+        [Display(Name = "Zip Code")]
+        public string BusinessZipCode { get; set; }
+
+        [Display(Name = "E-mail")]
+        [DataType(DataType.EmailAddress)]
+        public string BusinessEmailAddresss { get; set; }
+
+        [Display(Name = "Mobile Number")]
+        [DataType(DataType.PhoneNumber)]
+        public string BusinessMobile { get; set; }
+
+        [Display(Name = "Landline Number")]
+        [DataType(DataType.PhoneNumber)]
+        public string BusinessLandline { get; set; }
+
+        [Display(Name = "Date Established")]
+        [DataType(DataType.Date)]
+        [DisplayFormat(DataFormatString = "{0:yyyy-MM-dd}", ApplyFormatInEditMode = true)]
+        public DateTime DateEstablished { get; set; }
+        #endregion
+
+        #region Validate RegisterViewModel
+        public IEnumerable<ValidationResult> Validate(ValidationContext validationContext)
+        {
+            List<ValidationResult> validationResults = new List<ValidationResult>();
+
+            if (MemberAccountType == Role.Designer)
+            {
+                List<string> addressFieldsInvalid = new List<string>();
+                if(String.IsNullOrEmpty(BusinessName))
+                {
+                    validationResults.Add(new ValidationResult("Designer Label Name is required",
+                        new[] { "BusinessName" }));
+                }
+                if (String.IsNullOrEmpty(BusinessEmailAddresss))
+                {
+                    validationResults.Add(new ValidationResult("Designer Label E-mail is required",
+                        new[] { "BusinessEmailAddresss" }));
+                }
+                if (String.IsNullOrEmpty(BusinessMobile) && String.IsNullOrEmpty(BusinessLandline))
+                {
+                    validationResults.Add(new ValidationResult("At least 1 Desginer Label Contact Number is required",
+                        new[] { "BusinessMobile" }));
+                }
+                if (String.IsNullOrEmpty(StreetNo))
+                {
+                    validationResults.Add(new ValidationResult("Street No. is required",
+                        new[] { "StreetNo" }));
+                }
+                if (String.IsNullOrEmpty(StreetName))
+                {
+                    validationResults.Add(new ValidationResult("Street Name is required",
+                        new[] { "StreetName" }));
+                }
+                if (String.IsNullOrEmpty(Municipality))
+                {
+                    validationResults.Add(new ValidationResult("Municipality is required",
+                        new[] { "Municipality" }));
+                }
+                if (String.IsNullOrEmpty(BusinessCity))
+                {
+                    validationResults.Add(new ValidationResult("City is required",
+                        new[] { "BusinessCity" }));
+                }
+                if (String.IsNullOrEmpty(BusinessZipCode))
+                {
+                    validationResults.Add(new ValidationResult("Zip Code is required",
+                        new[] { "BusinessZipCode" }));
+                }
+
+            }
+
+            return validationResults;
+
+        }
+        #endregion
+
     }
 
-    public enum AccountType 
-    {
-        //Anonymous = 1, //Site visitor.  Can search, share links, can order, and use the site but cannot rate
-        Member = 1, //Site member.  Can search, share links, and use the site, can rate designers, can save favorite designers
-        Designer = 2 //Seller.  Can create designer profile, upload fashion collections, can receive orders via e-mail
-    }
 }

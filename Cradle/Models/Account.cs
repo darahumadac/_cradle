@@ -32,6 +32,7 @@ namespace Cradle.Models
         { 
         }
 
+        public DbSet<SecurityQuestions> SecurityQuestions { get; set; }
         public DbSet<DesignerProfile> DesignerProfiles { get; set; }
         public DbSet<PersonalProfile> PersonalProfiles { get; set; }
         public DbSet<Address> Addresses { get; set; }

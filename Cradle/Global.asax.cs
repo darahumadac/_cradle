@@ -16,6 +16,7 @@ namespace Cradle
             FilterConfig.RegisterGlobalFilters(GlobalFilters.Filters);
             RouteConfig.RegisterRoutes(RouteTable.Routes);
             BundleConfig.RegisterBundles(BundleTable.Bundles);
+            //Get all counts and lookup values here
         }
     }
 }

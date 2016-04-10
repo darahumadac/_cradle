@@ -7,7 +7,6 @@ namespace Cradle.Models.Enums
 {
     public enum Role
     {
-        Anonymous = 0,
         Member = 1,
         Designer = 2
     }

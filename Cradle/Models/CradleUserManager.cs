@@ -18,8 +18,6 @@ namespace Cradle.Models
             set { _userStore = value; }
         }
 
-        
-
         public CradleUserManager(CradleUserStore userStore) : base(userStore)
         {
             _userStore = userStore;

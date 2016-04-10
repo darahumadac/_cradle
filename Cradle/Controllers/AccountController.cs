@@ -69,7 +69,8 @@ namespace Cradle.Controllers
         [AllowAnonymous]
         public ActionResult Register()
         {
-            return View();
+            RegisterViewModel model = new RegisterViewModel();
+            return View(model);
         }
 
         //
@@ -108,11 +109,7 @@ namespace Cradle.Controllers
                     var userAddress = new Address()
                     {
                         City = model.City,
-                        Country = model.Country,
-                        Municipality = "Municipality",
-                        StreetName = "streetname",
-                        StreetNo = "123",
-                        ZipCode = "1550"
+                        Country = model.Country
                     };
                     UserManager.UserStore.AddAddress(userAddress);
 
@@ -122,8 +119,6 @@ namespace Cradle.Controllers
                         PersonalProfileId = user.Id,
                         FirstName = model.FirstName,
                         LastName = model.LastName,
-                        Country = model.Country,
-                        City = model.City,
                         Birthdate = model.BirthDate,
                         Address = userAddress
                     };
@@ -140,14 +135,20 @@ namespace Cradle.Controllers
 
                     if(model.MemberAccountType == Models.Enums.Role.Designer)
                     {
+                        var designerContact = new ContactNumber()
+                        {
+                            MobileNo = model.BusinessMobile,
+                            LandlineNo = model.BusinessLandline
+                        };
+
                         var designerAddress = new Address()
                         {
-                            City = "Marikina",
-                            Country = "PH",
-                            Municipality = "Marikina Municiplaity",
-                            StreetName = "Somewhere",
-                            StreetNo = "5678",
-                            ZipCode = "5635"
+                            City = model.BusinessCity,
+                            Country = model.BusinessCountry,
+                            Municipality = model.Municipality,
+                            StreetName = model.StreetName,
+                            StreetNo = model.StreetNo,
+                            ZipCode = model.BusinessZipCode
 
                         };
 
@@ -158,10 +159,10 @@ namespace Cradle.Controllers
                             //test data. Dev purposes only
                             DesignerProfileID = user.Id,
                             Address = designerAddress,
-                            Birthdate = new DateTime(1992, 6, 28),
-                            BusinessEmailAddress = "darahfumadac@gmail.com",
-                            BusinessName = "Darah's business",
-                            ContactNumber = new List<ContactNumber>() { new ContactNumber { MobileNo = "1234" } },
+                            Birthdate = model.DateEstablished,
+                            BusinessEmailAddress = model.BusinessEmailAddresss,
+                            BusinessName = model.BusinessName,
+                            ContactNumber = new List<ContactNumber>() { designerContact },
                             ProfileStats = new Statistics()
                             {
                                 AveRating = 0,

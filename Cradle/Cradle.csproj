@@ -173,6 +173,14 @@
     <Compile Include="Migrations\201604100155179_RemoveRoleFromAccountTable.Designer.cs">
       <DependentUpon>201604100155179_RemoveRoleFromAccountTable.cs</DependentUpon>
     </Compile>
+    <Compile Include="Migrations\201604100230516_AddSecurityQuestions.cs" />
+    <Compile Include="Migrations\201604100230516_AddSecurityQuestions.Designer.cs">
+      <DependentUpon>201604100230516_AddSecurityQuestions.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201604100355505_RemoveCityCountryInPersonalProfile.cs" />
+    <Compile Include="Migrations\201604100355505_RemoveCityCountryInPersonalProfile.Designer.cs">
+      <DependentUpon>201604100355505_RemoveCityCountryInPersonalProfile.cs</DependentUpon>
+    </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Models\Account.cs" />
     <Compile Include="Models\AccountViewModels.cs" />
@@ -224,6 +232,7 @@
     <Compile Include="Models\Profile.cs">
       <SubType>Code</SubType>
     </Compile>
+    <Compile Include="Models\SecurityQuestion.cs" />
     <Compile Include="Models\Statistics.cs">
       <SubType>Code</SubType>
     </Compile>
@@ -311,6 +320,12 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Migrations\201604100155179_RemoveRoleFromAccountTable.resx">
       <DependentUpon>201604100155179_RemoveRoleFromAccountTable.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201604100230516_AddSecurityQuestions.resx">
+      <DependentUpon>201604100230516_AddSecurityQuestions.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201604100355505_RemoveCityCountryInPersonalProfile.resx">
+      <DependentUpon>201604100355505_RemoveCityCountryInPersonalProfile.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Resources\Resource.en-US.resx" />
     <EmbeddedResource Include="Resources\Resource.resx">
