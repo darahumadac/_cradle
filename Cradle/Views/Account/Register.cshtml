@@ -32,7 +32,7 @@
                         {
                             if(item.ToString().Equals(Cradle.Models.Enums.Role.Member.ToString()))
                             {
-                               @Html.RadioButtonFor(m => m.MemberAccountType, item, new { @checked = "true"})
+                               @Html.RadioButtonFor(m => m.MemberAccountType, item, new {@checked = "true",})
                             }
                             else
                             {
@@ -84,74 +84,76 @@
                 
             </div>
             
-            <hr />
-            <h4>Designer Information</h4>
-            <hr />
-            
             //Business Details
-            
-            <div id="businessDetailsDiv" >
-                <div class="form-group">
-                    @Html.LabelFor(m => m.BusinessName, new { @class = "col-md-2 control-label" })
-                    <div class="col-md-4">
-                        @Html.TextBoxFor(m => m.BusinessName, new { @class = "form-control" })
-                    </div>
-                    @Html.LabelFor(m => m.DateEstablished, new { @class = "col-md-3 control-label" })
-                    <div class="col-md-2">
-                        @Html.EditorFor(m => m.DateEstablished, new { @class = "form-control" })
-                    </div>
-                </div>
-                <div class="form-group">
-                    @Html.LabelFor(m => m.BusinessEmailAddresss, new { @class = "col-md-2 control-label" })
-                    <div class="col-md-4">
-                        @Html.TextBoxFor(m => m.BusinessEmailAddresss, new { @class = "form-control" })
-                    </div>
-                </div>
-                <div class="form-group">
-                    @Html.LabelFor(m => m.BusinessMobile, new { @class = "col-md-2 control-label" })
-                    <div class="col-md-3">
-                        @Html.TextBoxFor(m => m.BusinessMobile, new { @class = "form-control" })
-                    </div>
+            <div id="designerDiv" class="collapse">
+                <hr />
+                <h4>Designer Information</h4>
+                <hr />
 
-                    @Html.LabelFor(m => m.BusinessLandline, new { @class = "col-md-2 control-label" })
-                    <div class="col-md-3">
-                        @Html.TextBoxFor(m => m.BusinessLandline, new { @class = "form-control" })
+                <div id="businessDetailsDiv">
+                    <div class="form-group">
+                        @Html.LabelFor(m => m.BusinessName, new { @class = "col-md-2 control-label" })
+                        <div class="col-md-4">
+                            @Html.TextBoxFor(m => m.BusinessName, new { @class = "form-control" })
+                        </div>
+                        @Html.LabelFor(m => m.DateEstablished, new { @class = "col-md-3 control-label" })
+                        <div class="col-md-2">
+                            @Html.EditorFor(m => m.DateEstablished, new { @class = "form-control" })
+                        </div>
                     </div>
-                </div>
-                <div class="form-group">
-                    @Html.LabelFor(m => m.StreetNo, new { @class = "col-md-2 control-label" })
-                    <div class="col-md-2">
-                        @Html.TextBoxFor(m => m.StreetNo, new { @class = "form-control" })
+                    <div class="form-group">
+                        @Html.LabelFor(m => m.BusinessEmailAddresss, new { @class = "col-md-2 control-label" })
+                        <div class="col-md-4">
+                            @Html.TextBoxFor(m => m.BusinessEmailAddresss, new { @class = "form-control" })
+                        </div>
                     </div>
-                    @Html.LabelFor(m => m.StreetName, new { @class = "col-md-3 control-label" })
-                    <div class="col-md-5">
-                        @Html.TextBoxFor(m => m.StreetName, new { @class = "form-control" })
+                    <div class="form-group">
+                        @Html.LabelFor(m => m.BusinessMobile, new { @class = "col-md-2 control-label" })
+                        <div class="col-md-4">
+                            @Html.TextBoxFor(m => m.BusinessMobile, new { @class = "form-control" })
+                        </div>
+
+                        @Html.LabelFor(m => m.BusinessLandline, new { @class = "col-md-3 control-label" })
+                        <div class="col-md-3">
+                            @Html.TextBoxFor(m => m.BusinessLandline, new { @class = "form-control" })
+                        </div>
                     </div>
-                </div>
-                <div class="form-group">
-                    @Html.LabelFor(m => m.Municipality, new { @class = "col-md-2 control-label" })
-                    <div class="col-md-3">
-                        @Html.TextBoxFor(m => m.Municipality, new { @class = "form-control" })
+                    <div class="form-group">
+                        @Html.LabelFor(m => m.StreetNo, new { @class = "col-md-2 control-label" })
+                        <div class="col-md-2">
+                            @Html.TextBoxFor(m => m.StreetNo, new { @class = "form-control" })
+                        </div>
+                        @Html.LabelFor(m => m.StreetName, new { @class = "col-md-3 control-label" })
+                        <div class="col-md-5">
+                            @Html.TextBoxFor(m => m.StreetName, new { @class = "form-control" })
+                        </div>
                     </div>
-                    @Html.LabelFor(m => m.BusinessCity, new { @class = "col-md-2 control-label" })
-                    <div class="col-md-5">
-                        @Html.TextBoxFor(m => m.BusinessCity, new { @class = "form-control" })
+                    <div class="form-group">
+                        @Html.LabelFor(m => m.Municipality, new { @class = "col-md-2 control-label" })
+                        <div class="col-md-3">
+                            @Html.TextBoxFor(m => m.Municipality, new { @class = "form-control" })
+                        </div>
+                        @Html.LabelFor(m => m.BusinessCity, new { @class = "col-md-2 control-label" })
+                        <div class="col-md-5">
+                            @Html.TextBoxFor(m => m.BusinessCity, new { @class = "form-control" })
+                        </div>
                     </div>
-                </div>
-                <div class="form-group">
-                    @Html.LabelFor(m => m.BusinessZipCode, new { @class = "col-md-2 control-label" })
-                    <div class="col-md-2">
-                        @Html.TextBoxFor(m => m.BusinessZipCode, new { @class = "form-control" })
-                    </div>
-                    @Html.LabelFor(m => m.BusinessCountry, new { @class = "col-md-2 control-label" })
-                    <div class="col-md-5">
-                        @Html.DropDownList("BusinessCountry", new List<SelectListItem>
+                    <div class="form-group">
+                        @Html.LabelFor(m => m.BusinessZipCode, new { @class = "col-md-2 control-label" })
+                        <div class="col-md-2">
+                            @Html.TextBoxFor(m => m.BusinessZipCode, new { @class = "form-control" })
+                        </div>
+                        @Html.LabelFor(m => m.BusinessCountry, new { @class = "col-md-2 control-label" })
+                        <div class="col-md-5">
+                            @Html.DropDownList("BusinessCountry", new List<SelectListItem>
                         {
                             new SelectListItem { Text="Philippines", Value="PH" }
                         }, new { @class = "col-md-12" })
+                        </div>
                     </div>
                 </div>
             </div>
+            
            
             <hr />
             <h4>Personal Information</h4>
@@ -222,4 +224,5 @@
 
 @section Scripts {
     @Scripts.Render("~/bundles/jqueryval")
+    @Scripts.Render("~/bundles/register")
 }
