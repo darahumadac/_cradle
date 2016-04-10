@@ -85,7 +85,6 @@ namespace Cradle.Controllers
                 { 
                     UserName = model.UserName,
                     EmailAddress = model.Email,
-                    Role = model.MemberAccountType,
                     SecurityQuestion = model.SecurityQuestion,
                     SecurityAnswer = model.SecurityAnswer,
                     IsActive = true,
@@ -96,6 +95,15 @@ namespace Cradle.Controllers
 
                 if (result.Succeeded)
                 {
+                    if (model.MemberAccountType == Models.Enums.Role.Member)
+                    { 
+                        UserManager.AddToRole(user.Id, "Member");
+                    }
+                    else if (model.MemberAccountType == Models.Enums.Role.Designer)
+                    {
+                        UserManager.AddToRole(user.Id, "Designer");
+                    }
+
                     //Add Address
                     var userAddress = new Address()
                     {
@@ -132,15 +140,28 @@ namespace Cradle.Controllers
 
                     if(model.MemberAccountType == Models.Enums.Role.Designer)
                     {
+                        var designerAddress = new Address()
+                        {
+                            City = "Marikina",
+                            Country = "PH",
+                            Municipality = "Marikina Municiplaity",
+                            StreetName = "Somewhere",
+                            StreetNo = "5678",
+                            ZipCode = "5635"
+
+                        };
+
+                        UserManager.UserStore.AddAddress(designerAddress);
+
                         var designerProfile = new DesignerProfile()
                         {
                             //test data. Dev purposes only
                             DesignerProfileID = user.Id,
-                            Address = userAddress,
+                            Address = designerAddress,
                             Birthdate = new DateTime(1992, 6, 28),
                             BusinessEmailAddress = "darahfumadac@gmail.com",
                             BusinessName = "Darah's business",
-                            ContactNumber = new List<ContactNumber>() { new ContactNumber{MobileNo = "1234"} },
+                            ContactNumber = new List<ContactNumber>() { new ContactNumber { MobileNo = "1234" } },
                             ProfileStats = new Statistics()
                             {
                                 AveRating = 0,

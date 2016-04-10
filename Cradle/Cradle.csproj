@@ -169,6 +169,10 @@
     <Compile Include="Migrations\201604091235186_CreateDatabase_v2.0.Designer.cs">
       <DependentUpon>201604091235186_CreateDatabase_v2.0.cs</DependentUpon>
     </Compile>
+    <Compile Include="Migrations\201604100155179_RemoveRoleFromAccountTable.cs" />
+    <Compile Include="Migrations\201604100155179_RemoveRoleFromAccountTable.Designer.cs">
+      <DependentUpon>201604100155179_RemoveRoleFromAccountTable.cs</DependentUpon>
+    </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Models\Account.cs" />
     <Compile Include="Models\AccountViewModels.cs" />
@@ -304,6 +308,9 @@
   <ItemGroup>
     <EmbeddedResource Include="Migrations\201604091235186_CreateDatabase_v2.0.resx">
       <DependentUpon>201604091235186_CreateDatabase_v2.0.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201604100155179_RemoveRoleFromAccountTable.resx">
+      <DependentUpon>201604100155179_RemoveRoleFromAccountTable.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Resources\Resource.en-US.resx" />
     <EmbeddedResource Include="Resources\Resource.resx">

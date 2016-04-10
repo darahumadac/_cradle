@@ -13,7 +13,6 @@ namespace Cradle.Models
 {
     public class Account : IdentityUser
     {
-        public Role Role { get; set; }
         public string EmailAddress { get; set; }
         public int SecurityQuestion { get; set; }
         public string SecurityAnswer { get; set; } //should be in hash form
