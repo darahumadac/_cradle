@@ -210,12 +210,23 @@ select {
     margin-top: 70px;
 }
 
+#socialLoginDiv > button
+{
+    margin-top: 10px;
+}
+
 /*Start:    MVC Default Styles*/
 
 /* Set padding to keep content from hitting the edges */
 .body-content {
     padding-left: 15px;
     padding-right: 15px;
+}
+
+#externalLoginConfirmationDiv > div .control-label
+{
+    padding-top: 7px;
+    float: left;
 }
 
 /* Set width on the form input elements since they're 100% wide by default */

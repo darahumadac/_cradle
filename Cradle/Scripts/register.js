@@ -1,5 +1,6 @@
 ﻿$(function(){
     
+    //Designer Profile Form
     var memberType = $('input[name="MemberAccountType"]');
     memberType.change(toggleDesignerDiv);
 

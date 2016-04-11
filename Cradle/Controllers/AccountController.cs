@@ -10,6 +10,27 @@ using Microsoft.AspNet.Identity.EntityFramework;
 using Microsoft.Owin.Security;
 using Cradle.Models;
 
+#region To-Do list
+//Site Functionality
+//TODO: Add Profiles when register via social login
+//TODO: Create private methods for filling in data for creating users
+//TODO: Add Size property for Items (E.G. Waistline, etc.)
+//TODO: Add the following fields in all tables:
+ //   - Created Date
+ //   - Created By
+ //   - Updated Date
+ //   - Updated By
+ //
+
+//Security / Optimization
+//TODO: If another user successfully logs in already logged in account, user must be disconnected; check claims for this
+//TODO: Add session handling / session timeout
+//TODO: Add failed login count functionality / password reset / forgot password
+//TODO: Configure getting data from db. avoid always making connections; Get all counts and lookup values and save them in a class.
+//TODO: SQL Injection, Direct Object Reference, Cross site scripting issues
+
+#endregion
+
 namespace Cradle.Controllers
 {
     [Authorize]
@@ -85,7 +106,7 @@ namespace Cradle.Controllers
                 var user = new Account() 
                 { 
                     UserName = model.UserName,
-                    EmailAddress = model.Email,
+                    EmailAddress = model.EmailAddress,
                     SecurityQuestion = model.SecurityQuestion,
                     SecurityAnswer = model.SecurityAnswer,
                     IsActive = true,
@@ -105,7 +126,7 @@ namespace Cradle.Controllers
                         UserManager.AddToRole(user.Id, "Designer");
                     }
 
-                    //Add Address
+                    //Add Personal Address
                     var userAddress = new Address()
                     {
                         City = model.City,
@@ -125,7 +146,7 @@ namespace Cradle.Controllers
 
                     UserManager.UserStore.AddPersonalProfile(userProfile);
 
-                    //Add Contact No
+                    //Add Personal Contact No
                     var personalContact = new ContactNumber()
                     {
                         MobileNo = model.MobileNo,
@@ -156,7 +177,6 @@ namespace Cradle.Controllers
 
                         var designerProfile = new DesignerProfile()
                         {
-                            //test data. Dev purposes only
                             DesignerProfileID = user.Id,
                             Address = designerAddress,
                             Birthdate = model.DateEstablished,
@@ -177,14 +197,9 @@ namespace Cradle.Controllers
 
                     }
 
-
-
-                }
-
-                if (result.Succeeded)
-                {
                     await SignInAsync(user, isPersistent: false);
                     return RedirectToAction("Index", "Home");
+
                 }
                 else
                 {
@@ -289,7 +304,8 @@ namespace Cradle.Controllers
         public ActionResult ExternalLogin(string provider, string returnUrl)
         {
             // Request a redirect to the external login provider
-            return new ChallengeResult(provider, Url.Action("ExternalLoginCallback", "Account", new { ReturnUrl = returnUrl }));
+            return new ChallengeResult(provider, Url.Action("ExternalLoginCallback", 
+                "Account", new { ReturnUrl = returnUrl }));
         }
 
         //
@@ -302,7 +318,7 @@ namespace Cradle.Controllers
             {
                 return RedirectToAction("Login");
             }
-
+           
             // Sign in the user with this external login provider if the user already has a login
             var user = await UserManager.FindAsync(loginInfo.Login);
             if (user != null)
@@ -315,7 +331,43 @@ namespace Cradle.Controllers
                 // If the user does not have an account, then prompt the user to create an account
                 ViewBag.ReturnUrl = returnUrl;
                 ViewBag.LoginProvider = loginInfo.Login.LoginProvider;
-                return View("ExternalLoginConfirmation", new ExternalLoginConfirmationViewModel { UserName = loginInfo.DefaultUserName });
+                var identityInfo = await AuthenticationManager.GetExternalIdentityAsync("ExternalCookie");
+
+                ExternalLoginConfirmationViewModel confirmationModel = new ExternalLoginConfirmationViewModel();
+                foreach (var userClaim in identityInfo.Claims)
+                {
+                    switch (userClaim.Type)
+                    { 
+                        case "email":
+                            confirmationModel.EmailAddress = userClaim.Value;
+                            break;
+                        case "familyName":
+                            confirmationModel.LastName = userClaim.Value;
+                            break;
+                        case "givenName":
+                            confirmationModel.FirstName = userClaim.Value;
+                            break;
+                        case "birthday":
+                            DateTime userBirthdate = DateTime.Today;
+                            DateTime.TryParse(userClaim.Value, out userBirthdate);
+                            confirmationModel.BirthDate = userBirthdate;
+                            break;
+                        case "city":
+                            confirmationModel.City = userClaim.Value;
+                            break;
+                        case "country":
+                            confirmationModel.Country = userClaim.Value;
+                            break;
+                        case "mobileNo":
+                            confirmationModel.MobileNo = userClaim.Value;
+                            break;
+
+
+                    }
+                }
+                confirmationModel.UserName = loginInfo.DefaultUserName;
+
+                return View("ExternalLoginConfirmation", confirmationModel);
             }
         }
 
@@ -366,17 +418,108 @@ namespace Cradle.Controllers
                 {
                     return View("ExternalLoginFailure");
                 }
-                var user = new Account() { UserName = model.UserName };
+                var user = new Account() 
+                { 
+                    UserName = model.UserName,
+                    EmailAddress = model.EmailAddress,
+                    IsActive = true,
+                    FailedLoginCount = 0
+                };
+                
                 var result = await UserManager.CreateAsync(user);
+
                 if (result.Succeeded)
                 {
                     result = await UserManager.AddLoginAsync(user.Id, info.Login);
                     if (result.Succeeded)
                     {
+                        if(model.MemberAccountType == Models.Enums.Role.Member)
+                        {
+                            UserManager.AddToRole(user.Id, "Member");
+                        }
+                        else
+                        {
+                            UserManager.AddToRole(user.Id, "Designer");
+                        }
+
+                        //Add Personal Address
+                        var userAddress = new Address()
+                        {
+                            City = model.City,
+                            Country = model.Country
+                        };
+
+                        UserManager.UserStore.AddAddress(userAddress);
+
+                        //Add Personal Profile
+                        var userProfile = new PersonalProfile()
+                        {
+                            PersonalProfileId = user.Id,
+                            FirstName = model.FirstName,
+                            LastName = model.LastName,
+                            Birthdate = model.BirthDate,
+                            Address = userAddress
+                        };
+
+                        UserManager.UserStore.AddPersonalProfile(userProfile);
+
+                        //Add Personal Contact No
+                        var personalContact = new ContactNumber()
+                        {
+                            MobileNo = model.MobileNo,
+                            PersonalProfile = userProfile
+                        };
+                        UserManager.UserStore.AddContactNo(personalContact);
+
+                        //If Designer Account...
+                        if (model.MemberAccountType == Models.Enums.Role.Designer)
+                        {
+                            var designerContact = new ContactNumber()
+                            {
+                                MobileNo = model.BusinessMobile,
+                                LandlineNo = model.BusinessLandline
+                            };
+
+                            var designerAddress = new Address()
+                            {
+                                City = model.BusinessCity,
+                                Country = model.BusinessCountry,
+                                Municipality = model.Municipality,
+                                StreetName = model.StreetName,
+                                StreetNo = model.StreetNo,
+                                ZipCode = model.BusinessZipCode
+
+                            };
+
+                            UserManager.UserStore.AddAddress(designerAddress);
+
+                            var designerProfile = new DesignerProfile()
+                            {
+                                DesignerProfileID = user.Id,
+                                Address = designerAddress,
+                                Birthdate = model.DateEstablished,
+                                BusinessEmailAddress = model.BusinessEmailAddresss,
+                                BusinessName = model.BusinessName,
+                                ContactNumber = new List<ContactNumber>() { designerContact },
+                                ProfileStats = new Statistics()
+                                {
+                                    AveRating = 0,
+                                    LikeCount = 0,
+                                    TagCount = 0,
+                                    ViewCount = 0
+                                }
+
+                            };
+
+                            UserManager.UserStore.AddDesignerProfile(designerProfile);
+
+                        }
+
                         await SignInAsync(user, isPersistent: false);
                         return RedirectToLocal(returnUrl);
                     }
                 }
+
                 AddErrors(result);
             }
 
@@ -504,6 +647,11 @@ namespace Cradle.Controllers
                 context.HttpContext.GetOwinContext().Authentication.Challenge(properties, LoginProvider);
             }
         }
+        #endregion
+
+        #region Functions
+        
+
         #endregion
     }
 }

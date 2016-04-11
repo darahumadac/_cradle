@@ -47,9 +47,9 @@
                     </div>
                 </div>
                 <div class="form-group">
-                    @Html.LabelFor(m => m.Email, new { @class = "col-md-2 control-label" })
+                    @Html.LabelFor(m => m.EmailAddress, new { @class = "col-md-2 control-label" })
                     <div class="col-md-6">
-                        @Html.TextBoxFor(m => m.Email, new { @class = "form-control" })
+                        @Html.TextBoxFor(m => m.EmailAddress, new { @class = "form-control" })
                     </div>
                 </div>
                 <div class="form-group">
@@ -107,7 +107,13 @@
                     <div class="form-group">
                         @Html.LabelFor(m => m.BusinessMobile, new { @class = "col-md-2 control-label" })
                         <div class="col-md-4">
-                            @Html.TextBoxFor(m => m.BusinessMobile, new { @class = "form-control" })
+                            @Html.TextBoxFor(m => m.BusinessMobile,
+                            new
+                            {
+                                @id = "mobileNo",
+                                @class = "bfh-phone bfh-countries form-control",
+                                @data_country = "businessCountryDropdown"
+                            })
                         </div>
 
                         @Html.LabelFor(m => m.BusinessLandline, new { @class = "col-md-3 control-label" })
@@ -142,10 +148,8 @@
                         </div>
                         @Html.LabelFor(m => m.BusinessCountry, new { @class = "col-md-2 control-label" })
                         <div class="col-md-5">
-                            @Html.DropDownList("BusinessCountry", new List<SelectListItem>
-                        {
-                            new SelectListItem { Text="Philippines", Value="PH" }
-                        }, new { @class = "col-md-12" })
+                            @Html.DropDownList("BusinessCountry", new List<SelectListItem>(),
+                            new { @id="businessCountryDropdown", @class = "input-medium form-control bfh-countries", @data_country = "PH" })
                         </div>
                     </div>
                 </div>
@@ -175,25 +179,28 @@
                     </div>
                     @Html.LabelFor(m => m.Country, new { @class = "col-md-2 control-label" })
                     <div class="col-md-5">
-                        @Html.DropDownList("Country", new List<SelectListItem>
-                        {
-                            new SelectListItem { Text="Philippines", Value="PH" }
-                        }, new { @class = "col-md-12" })
+                        @Html.DropDownList("Country", new List<SelectListItem>(), 
+                        new {@id = "countryDropdown", 
+                            @class = "input-medium form-control bfh-countries", 
+                            @data_country = "PH"})
                     </div>
                 </div>
                 <div class="form-group">
                     @Html.LabelFor(m => m.MobileNo, new { @class = "col-md-2 control-label" })
                     <div class="col-md-3">
-                        @Html.TextBoxFor(m => m.MobileNo, new { @class = "form-control" })
+                        @Html.TextBox("countryCode", string.Empty,
+                        new {@id = "countryCode", @class = "bfh-phone bfh-countries col-sm-5 disabled",
+                            @data_country = "countryDropdown", @readonly = "readonly"})
+                        @*@Html.TextBoxFor(m => m.MobileNo, 
+                        new {@id = "mobileNo", @class = "bfh-phone bfh-countries form-control", 
+                            @data_country = "countryDropdown"})*@
+                        @Html.TextBoxFor(m => m.MobileNo,
+                        new
+                        {
+                            @id = "mobileNo",
+                            @class = "form-control"
+                        })
                     </div>
-
-                    @Html.LabelFor(m => m.LandlineNo, new { @class = "col-md-2 control-label" })
-                    <div class="col-md-3">
-                        @Html.TextBoxFor(m => m.LandlineNo, new { @class = "form-control" })
-                    </div>
-                </div>
-              
-                <div class="form-group">
                     @Html.LabelFor(m => m.BirthDate, new { @class = "col-md-2 control-label" })
                     <div class="col-md-5">
                         @Html.EditorFor(m => m.BirthDate, new { @class = "form-control" })
@@ -222,4 +229,5 @@
 @section Scripts {
     @Scripts.Render("~/bundles/jqueryval")
     @Scripts.Render("~/bundles/register")
+    @Scripts.Render("~/bundles/formhelpers")
 }

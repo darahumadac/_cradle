@@ -27,11 +27,19 @@ namespace Cradle
                       "~/Content/bootstrap.css",
                       "~/Content/site.css",
                       "~/Content/font-awesome.css",
-                      "~/Content/bootstrap-social.css"
+                      "~/Content/bootstrap-social.css",
+                      "~/Content/bootstrap-formhelpers.css"
                       ));
 
             bundles.Add(new ScriptBundle("~/bundles/register").Include(
                     "~/Scripts/register.js"
+                ));
+            bundles.Add(new ScriptBundle("~/bundles/formhelpers").Include(
+                    "~/Scripts/bootstrap-formhelpers.js",
+                    "~/Scripts/bootstrap-formhelpers-countries.js",
+                    "~/Scripts/bootstrap-formhelpers-datepicker.js",
+                    "~/Scripts/bootstrap-formhelpers-phone.js",
+                    "~/Scripts/bootstrap-formhelpers-selectbox.js"
                 ));
         }
     }

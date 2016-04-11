@@ -249,6 +249,7 @@
     <Compile Include="Startup.cs" />
   </ItemGroup>
   <ItemGroup>
+    <Content Include="Content\bootstrap-formhelpers.css" />
     <Content Include="Content\bootstrap-social.css" />
     <Content Include="Content\bootstrap.css" />
     <Content Include="Content\bootstrap.min.css" />
@@ -261,6 +262,11 @@
     <Content Include="img\233H.jpg" />
     <Content Include="img\bootstrap-social.png" />
     <Content Include="img\science87.png" />
+    <Content Include="Scripts\bootstrap-formhelpers-countries.js" />
+    <Content Include="Scripts\bootstrap-formhelpers-datepicker.js" />
+    <Content Include="Scripts\bootstrap-formhelpers-phone.js" />
+    <Content Include="Scripts\bootstrap-formhelpers-selectbox.js" />
+    <Content Include="Scripts\bootstrap-formhelpers.js" />
     <Content Include="Scripts\bootstrap.js" />
     <Content Include="Scripts\bootstrap.min.js" />
     <Content Include="fonts\CaviarDreams.ttf" />
