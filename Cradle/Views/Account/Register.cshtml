@@ -110,7 +110,7 @@
                             @Html.TextBoxFor(m => m.BusinessMobile,
                             new
                             {
-                                @id = "mobileNo",
+                                @id = "businessMobileNo",
                                 @class = "bfh-phone bfh-countries form-control",
                                 @data_country = "businessCountryDropdown"
                             })
@@ -149,7 +149,7 @@
                         @Html.LabelFor(m => m.BusinessCountry, new { @class = "col-md-2 control-label" })
                         <div class="col-md-5">
                             @Html.DropDownList("BusinessCountry", new List<SelectListItem>(),
-                            new { @id="businessCountryDropdown", @class = "input-medium form-control bfh-countries", @data_country = "PH" })
+                            new { @id="businessCountryDropdown", @class = "input-medium form-control bfh-countries", @data_country= "PH", @data_available = "PH" })
                         </div>
                     </div>
                 </div>
@@ -188,18 +188,18 @@
                 <div class="form-group">
                     @Html.LabelFor(m => m.MobileNo, new { @class = "col-md-2 control-label" })
                     <div class="col-md-3">
-                        @Html.TextBox("countryCode", string.Empty,
+                        @*@Html.TextBox("countryCode", string.Empty,
                         new {@id = "countryCode", @class = "bfh-phone bfh-countries col-sm-5 disabled",
-                            @data_country = "countryDropdown", @readonly = "readonly"})
-                        @*@Html.TextBoxFor(m => m.MobileNo, 
+                            @data_country = "countryDropdown", @readonly = "readonly"})*@
+                        @Html.TextBoxFor(m => m.MobileNo, 
                         new {@id = "mobileNo", @class = "bfh-phone bfh-countries form-control", 
-                            @data_country = "countryDropdown"})*@
-                        @Html.TextBoxFor(m => m.MobileNo,
+                            @data_country = "countryDropdown"})
+                        @*@Html.TextBoxFor(m => m.MobileNo,
                         new
                         {
                             @id = "mobileNo",
                             @class = "form-control"
-                        })
+                        })*@
                     </div>
                     @Html.LabelFor(m => m.BirthDate, new { @class = "col-md-2 control-label" })
                     <div class="col-md-5">

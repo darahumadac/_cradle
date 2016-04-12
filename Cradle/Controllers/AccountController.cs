@@ -12,7 +12,8 @@ using Cradle.Models;
 
 #region To-Do list
 //Site Functionality
-//TODO: Add Profiles when register via social login
+//TODO: Add Profiles when register via social login: Facebook
+//TODO: Update external registration saving contact number with country code
 //TODO: Create private methods for filling in data for creating users
 //TODO: Add Size property for Items (E.G. Waistline, etc.)
 //TODO: Add the following fields in all tables:
@@ -73,7 +74,14 @@ namespace Cradle.Controllers
                 if (user != null)
                 {
                     await SignInAsync(user, model.RememberMe);
-                    return RedirectToLocal(returnUrl);
+                    if (returnUrl != null)
+                    {
+                        return RedirectToLocal(returnUrl);
+                    }
+                    else
+                    {
+                        return RedirectToAction("Dashboard", "Profile");
+                    }
                 }
                 else
                 {
@@ -147,20 +155,26 @@ namespace Cradle.Controllers
                     UserManager.UserStore.AddPersonalProfile(userProfile);
 
                     //Add Personal Contact No
+                    string[] mobileNoParts = model.MobileNo.Split(' ');
                     var personalContact = new ContactNumber()
                     {
-                        MobileNo = model.MobileNo,
+                        CountryCodeMobile = mobileNoParts[0],
+                        MobileNo = mobileNoParts[1],
                         PersonalProfile = userProfile
                     };
                     UserManager.UserStore.AddContactNo(personalContact);
 
                     if(model.MemberAccountType == Models.Enums.Role.Designer)
                     {
-                        var designerContact = new ContactNumber()
+                        mobileNoParts = model.BusinessMobile.Split(' ');
+                        var designerContact = new ContactNumber();
+                        if (!String.IsNullOrWhiteSpace(mobileNoParts[1]))
                         {
-                            MobileNo = model.BusinessMobile,
-                            LandlineNo = model.BusinessLandline
-                        };
+                            designerContact.CountryCodeMobile = mobileNoParts[0];
+                            designerContact.MobileNo = mobileNoParts[1];
+                        }
+                        designerContact.LandlineNo = model.BusinessLandline;
+                      
 
                         var designerAddress = new Address()
                         {
@@ -347,25 +361,24 @@ namespace Cradle.Controllers
                         case "givenName":
                             confirmationModel.FirstName = userClaim.Value;
                             break;
-                        case "birthday":
-                            DateTime userBirthdate = DateTime.Today;
-                            DateTime.TryParse(userClaim.Value, out userBirthdate);
-                            confirmationModel.BirthDate = userBirthdate;
-                            break;
-                        case "city":
-                            confirmationModel.City = userClaim.Value;
-                            break;
-                        case "country":
-                            confirmationModel.Country = userClaim.Value;
-                            break;
-                        case "mobileNo":
-                            confirmationModel.MobileNo = userClaim.Value;
-                            break;
-
-
+                        //case "birthday":
+                        //    DateTime userBirthdate = DateTime.Today;
+                        //    DateTime.TryParse(userClaim.Value, out userBirthdate);
+                        //    confirmationModel.BirthDate = userBirthdate;
+                        //    break;
+                        //case "city":
+                        //    confirmationModel.City = userClaim.Value;
+                        //    break;
+                        //case "country":
+                        //    confirmationModel.Country = userClaim.Value;
+                        //    break;
+                        //case "mobileNo":
+                        //    confirmationModel.MobileNo = userClaim.Value;
+                        //    break;
                     }
                 }
                 confirmationModel.UserName = loginInfo.DefaultUserName;
+                //set all other personal profile to textfields
 
                 return View("ExternalLoginConfirmation", confirmationModel);
             }

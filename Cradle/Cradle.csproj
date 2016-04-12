@@ -166,6 +166,7 @@
     <Compile Include="App_Start\Startup.Auth.cs" />
     <Compile Include="Controllers\AccountController.cs" />
     <Compile Include="Controllers\HomeController.cs" />
+    <Compile Include="Controllers\ProfileController.cs" />
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
@@ -184,6 +185,10 @@
     <Compile Include="Migrations\201604100355505_RemoveCityCountryInPersonalProfile.cs" />
     <Compile Include="Migrations\201604100355505_RemoveCityCountryInPersonalProfile.Designer.cs">
       <DependentUpon>201604100355505_RemoveCityCountryInPersonalProfile.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201604120914484_AddCountryCodeMobileInContactNo.cs" />
+    <Compile Include="Migrations\201604120914484_AddCountryCodeMobileInContactNo.Designer.cs">
+      <DependentUpon>201604120914484_AddCountryCodeMobileInContactNo.cs</DependentUpon>
     </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Models\Account.cs" />
@@ -318,6 +323,7 @@
     <Content Include="Views\Home\Designers.cshtml" />
     <Content Include="Views\Home\Lookbook.cshtml" />
     <Content Include="Views\Home\Custom-Made.cshtml" />
+    <Content Include="Views\Profile\Dashboard.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
@@ -341,6 +347,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Migrations\201604100355505_RemoveCityCountryInPersonalProfile.resx">
       <DependentUpon>201604100355505_RemoveCityCountryInPersonalProfile.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201604120914484_AddCountryCodeMobileInContactNo.resx">
+      <DependentUpon>201604120914484_AddCountryCodeMobileInContactNo.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Resources\Resource.en-US.resx" />
     <EmbeddedResource Include="Resources\Resource.resx">

@@ -9,11 +9,17 @@
         if (memberTypeRadioBtn == "Designer") {
             $('#designerDiv').collapse("show");
         }
-        else
-        {
+        else {
             $('#designerDiv').collapse("hide");
         }
     }
-    
+
+    if ($('input[name="MemberAccountType"]:checked').val() == "Designer") {
+        toggleDesignerDiv();
+    }
+
+    //Personal Profile Form
+    $('#mobileNo, #businessMobileNo').val('');
+
 
 });
