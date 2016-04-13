@@ -190,6 +190,10 @@
     <Compile Include="Migrations\201604120914484_AddCountryCodeMobileInContactNo.Designer.cs">
       <DependentUpon>201604120914484_AddCountryCodeMobileInContactNo.cs</DependentUpon>
     </Compile>
+    <Compile Include="Migrations\201604130919275_AddedNewDesignerProfileFields.cs" />
+    <Compile Include="Migrations\201604130919275_AddedNewDesignerProfileFields.Designer.cs">
+      <DependentUpon>201604130919275_AddedNewDesignerProfileFields.cs</DependentUpon>
+    </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Models\Account.cs" />
     <Compile Include="Models\AccountViewModels.cs" />
@@ -241,6 +245,8 @@
     <Compile Include="Models\Profile.cs">
       <SubType>Code</SubType>
     </Compile>
+    <Compile Include="Models\ProfileViewModels.cs" />
+    <Compile Include="Models\SearchResultViewModels.cs" />
     <Compile Include="Models\SecurityQuestion.cs" />
     <Compile Include="Models\Statistics.cs">
       <SubType>Code</SubType>
@@ -322,8 +328,9 @@
     <Content Include="Views\Shared\_SearchBoxPartial.cshtml" />
     <Content Include="Views\Home\Designers.cshtml" />
     <Content Include="Views\Home\Lookbook.cshtml" />
-    <Content Include="Views\Home\Custom-Made.cshtml" />
     <Content Include="Views\Profile\Dashboard.cshtml" />
+    <Content Include="Views\Profile\Manage.cshtml" />
+    <Content Include="Views\Profile\NewCollection.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
@@ -350,6 +357,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Migrations\201604120914484_AddCountryCodeMobileInContactNo.resx">
       <DependentUpon>201604120914484_AddCountryCodeMobileInContactNo.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201604130919275_AddedNewDesignerProfileFields.resx">
+      <DependentUpon>201604130919275_AddedNewDesignerProfileFields.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Resources\Resource.en-US.resx" />
     <EmbeddedResource Include="Resources\Resource.resx">

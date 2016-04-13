@@ -3,11 +3,20 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Web;
 using System.Web.Mvc;
+using Cradle.Models;
+using Microsoft.AspNet.Identity;
 
 namespace Cradle.Controllers
 {
+    [Authorize]
     public class ProfileController : Controller
     {
+        private CradleDbContext _context;
+
+        public ProfileController()
+        {
+            _context = new CradleDbContext();
+        }
         //
         // GET: /Profile/
         public ActionResult Dashboard()
@@ -15,16 +24,47 @@ namespace Cradle.Controllers
             return View();
         }
 
-        //
-        // GET: /Profile/Details/5
-        public ActionResult Details(int id)
+        
+        public ActionResult Manage(/*string designer*/)
         {
-            return View();
+            DesignerProfile profile = _context.DesignerProfiles.Find(User.Identity.GetUserId());
+            if(profile != null && profile.DesignerProfileID == User.Identity.GetUserId())
+            {
+                DesignerProfileViewModel designerViewModel = new DesignerProfileViewModel()
+                {
+                    DesignerName = profile.BusinessName,
+                    Tagline = profile.Tagline,
+                    Email = profile.BusinessEmailAddress,
+                    Address = profile.Address,
+                    MadeType = new List<string>(),
+                    DeliveryTime = new Dictionary<string,string>()
+                };
+                //string madeType = string.Empty;
+                if(profile.IsRTW)
+                {
+                    designerViewModel.MadeType.Add("RTW");
+                    designerViewModel.DeliveryTime.Add("RTW", profile.RTWMinDeliveryDays
+                        + " - " + profile.RTWMaxDeliveryDays);
+                }
+                if(profile.IsCustomMade)
+                {
+                    designerViewModel.MadeType.Add("Custom Made");
+                    designerViewModel.DeliveryTime.Add("Custom", profile.CustomMadeMinDeliveryDays
+                        + " - " + profile.CustomMadeMaxDeliveryDays);
+                }
+                
+                //Add code for setting DesignerProfile specialization here
+
+                //Add code for setting Price Range for designer (depends on the collection price range) here
+
+                return View(designerViewModel);
+            }
+            return RedirectToAction("Index", "Home");
         }
 
         //
         // GET: /Profile/Create
-        public ActionResult Create()
+        public ActionResult NewCollection()
         {
             return View();
         }

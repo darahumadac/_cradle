@@ -94,6 +94,14 @@ namespace Cradle.Models
         [DataType(DataType.Date)]
         [DisplayFormat(DataFormatString = "{0:yyyy-MM-dd}", ApplyFormatInEditMode = true)]
         public DateTime DateEstablished { get; set; }
+
+        [Display(Name = "RTW")]
+        public bool IsRTW { get; set; }
+
+        [Display(Name = "Custom Made")]
+        public bool IsCustomMade { get; set; }
+
+
         #endregion
 
         #region Validate ExternalLoginConfirmationViewModel
@@ -151,6 +159,7 @@ namespace Cradle.Models
                     validationResults.Add(new ValidationResult("Zip Code is required",
                         new[] { "BusinessZipCode" }));
                 }
+
 
             }
 

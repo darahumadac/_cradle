@@ -80,6 +80,11 @@ namespace Cradle.Controllers
                     }
                     else
                     {
+                        if (!user.DesignerProfile.IsProfileComplete)
+                        {
+                            return RedirectToAction("Manage", "Profile");
+                        }
+
                         return RedirectToAction("Dashboard", "Profile");
                     }
                 }
@@ -203,7 +208,10 @@ namespace Cradle.Controllers
                                 LikeCount = 0,
                                 TagCount = 0,
                                 ViewCount = 0
-                            }
+                            },
+                            IsRTW = model.IsRTW,
+                            IsCustomMade = model.IsCustomMade,
+                            IsProfileComplete = false
 
                         };
 
@@ -212,7 +220,11 @@ namespace Cradle.Controllers
                     }
 
                     await SignInAsync(user, isPersistent: false);
-                    return RedirectToAction("Index", "Home");
+                    if (!user.DesignerProfile.IsProfileComplete)
+                    {
+                        return RedirectToAction("Manage", "Profile");
+                    }
+                    return RedirectToAction("Dashboard", "Profile");
 
                 }
                 else
@@ -338,7 +350,20 @@ namespace Cradle.Controllers
             if (user != null)
             {
                 await SignInAsync(user, isPersistent: false);
-                return RedirectToLocal(returnUrl);
+                if(returnUrl != null)
+                { 
+                    return RedirectToLocal(returnUrl);
+                }
+                else
+                {
+                    if(!user.DesignerProfile.IsProfileComplete)
+                    {
+                        return RedirectToAction("Manage", "Profile");
+                    }
+
+                    return RedirectToAction("Dashboard", "Profile");
+                    
+                }
             }
             else
             {
@@ -520,7 +545,10 @@ namespace Cradle.Controllers
                                     LikeCount = 0,
                                     TagCount = 0,
                                     ViewCount = 0
-                                }
+                                },
+                                IsRTW = model.IsRTW,
+                                IsCustomMade = model.IsCustomMade,
+                                IsProfileComplete = false
 
                             };
 
@@ -663,7 +691,99 @@ namespace Cradle.Controllers
         #endregion
 
         #region Functions
-        
+        private void FillUserDetails(BaseRegistrationViewModel model, string userID)
+        {
+
+            if (model.MemberAccountType == Models.Enums.Role.Member)
+            {
+                UserManager.AddToRole(userID, "Member");
+            }
+            else if (model.MemberAccountType == Models.Enums.Role.Designer)
+            {
+                UserManager.AddToRole(userID, "Designer");
+            }
+
+            //Add Personal Address
+            var userAddress = new Address()
+            {
+                City = model.City,
+                Country = model.Country
+            };
+            UserManager.UserStore.AddAddress(userAddress);
+
+            //Add Personal Profile
+            var userProfile = new PersonalProfile()
+            {
+                PersonalProfileId = userID,
+                FirstName = model.FirstName,
+                LastName = model.LastName,
+                Birthdate = model.BirthDate,
+                Address = userAddress
+            };
+
+            UserManager.UserStore.AddPersonalProfile(userProfile);
+
+            //Add Personal Contact No
+            string[] mobileNoParts = model.MobileNo.Split(' ');
+            var personalContact = new ContactNumber()
+            {
+                CountryCodeMobile = mobileNoParts[0],
+                MobileNo = mobileNoParts[1],
+                PersonalProfile = userProfile
+            };
+            UserManager.UserStore.AddContactNo(personalContact);
+
+            if (model.MemberAccountType == Models.Enums.Role.Designer)
+            {
+                mobileNoParts = model.BusinessMobile.Split(' ');
+                var designerContact = new ContactNumber();
+                if (!String.IsNullOrWhiteSpace(mobileNoParts[1]))
+                {
+                    designerContact.CountryCodeMobile = mobileNoParts[0];
+                    designerContact.MobileNo = mobileNoParts[1];
+                }
+                designerContact.LandlineNo = model.BusinessLandline;
+
+
+                var designerAddress = new Address()
+                {
+                    City = model.BusinessCity,
+                    Country = model.BusinessCountry,
+                    Municipality = model.Municipality,
+                    StreetName = model.StreetName,
+                    StreetNo = model.StreetNo,
+                    ZipCode = model.BusinessZipCode
+
+                };
+
+                UserManager.UserStore.AddAddress(designerAddress);
+
+                var designerProfile = new DesignerProfile()
+                {
+                    DesignerProfileID = userID,
+                    Address = designerAddress,
+                    Birthdate = model.DateEstablished,
+                    BusinessEmailAddress = model.BusinessEmailAddresss,
+                    BusinessName = model.BusinessName,
+                    ContactNumber = new List<ContactNumber>() { designerContact },
+                    ProfileStats = new Statistics()
+                    {
+                        AveRating = 0,
+                        LikeCount = 0,
+                        TagCount = 0,
+                        ViewCount = 0
+                    },
+                    IsRTW = model.IsRTW,
+                    IsCustomMade = model.IsCustomMade,
+                    IsProfileComplete = false
+
+                };
+
+                UserManager.UserStore.AddDesignerProfile(designerProfile);
+
+            }
+
+        }
 
         #endregion
     }

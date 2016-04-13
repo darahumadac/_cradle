@@ -105,6 +105,15 @@
                         </div>
                     </div>
                     <div class="form-group">
+                        @Html.Label("Made Type", new { @class = "col-md-2 control-label" })
+                        <div class="col-md-4">
+                            @Html.LabelFor(m => m.IsRTW)
+                            @Html.CheckBoxFor(m => m.IsRTW)
+                            @Html.LabelFor(m => m.IsCustomMade)
+                            @Html.CheckBoxFor(m => m.IsCustomMade)
+                        </div>
+                    </div>
+                    <div class="form-group">
                         @Html.LabelFor(m => m.BusinessMobile, new { @class = "col-md-2 control-label" })
                         <div class="col-md-4">
                             @Html.TextBoxFor(m => m.BusinessMobile,

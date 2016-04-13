@@ -1,4 +1,5 @@
-﻿using System;
+﻿using Cradle.Models;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Web;
@@ -8,6 +9,13 @@ namespace Cradle.Controllers
 {
     public class HomeController : Controller
     {
+        private CradleDbContext _context;
+
+        public HomeController()
+        {
+            _context = new CradleDbContext();
+        }
+
         public ActionResult Index()
         {
             return View();
@@ -27,9 +35,22 @@ namespace Cradle.Controllers
             return View();
         }
 
-        public ActionResult Designers()
+        public ActionResult Designers(string filter)
         {
-            return View();
+            List<DesignerResultsViewModel> designerList = new List<DesignerResultsViewModel>();
+            if(string.IsNullOrWhiteSpace(filter) || !filter.Equals("custom-made"))
+            {
+                //All designers
+                _context.DesignerProfiles.ToList()
+                .ForEach(dp => designerList.Add(new DesignerResultsViewModel(dp)));
+            }
+            else if (filter.Equals("custom-made"))
+            {
+                _context.DesignerProfiles.Where(dp => dp.IsCustomMade == true)
+                    .ToList().ForEach(dp => designerList.Add(new DesignerResultsViewModel(dp)));
+            }
+
+            return View(designerList);
         }
 
         public ActionResult Lookbook()
@@ -37,10 +58,7 @@ namespace Cradle.Controllers
             return View();
         }
 
-        [ActionName("Custom-Made")]
-        public ActionResult CustomMade()
-        {
-            return View();
-        }
+       
+
     }
 }

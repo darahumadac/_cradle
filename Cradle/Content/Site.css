@@ -104,6 +104,10 @@ background-color: #001D34;
     color: white;
 }
 
+#navHeader {
+    z-index: 1050;
+}
+
 footer div{
     height: 50px;
 }
@@ -173,7 +177,7 @@ footer span{
     color: white;
 }
 
-.nav-tabs > li.active > a:hover{
+.nav-tabs > li.active > a:hover, #profileMenu{
     cursor: pointer;
 }
 

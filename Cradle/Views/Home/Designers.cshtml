@@ -1,1 +1,7 @@
-﻿
+﻿@model List<DesignerResultsViewModel>
+
+@foreach(DesignerResultsViewModel designer in Model)
+{
+    @designer.DesignerName <br/>
+}
+

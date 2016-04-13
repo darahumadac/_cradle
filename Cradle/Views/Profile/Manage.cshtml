@@ -1,0 +1,19 @@
+﻿@model Cradle.Models.DesignerProfileViewModel
+
+<h3>Manage Profile</h3>
+@Model.DesignerName
+@Model.Tagline
+@Model.Email
+@Model.Address
+
+@foreach(string madeType in Model.MadeType)
+{
+    <label>@madeType</label><br/>
+}
+
+@foreach (string madeType in Model.DeliveryTime.Keys)
+{
+    <label>@Model.DeliveryTime[madeType]</label><br />
+}
+
+@Html.ActionLink("Add Collection", "NewCollection", "Profile")

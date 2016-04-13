@@ -12,7 +12,7 @@
 <body>
     @* Header *@
     <header>
-        <nav class="navbar navbar-default navbar-fixed-top">
+        <nav id="navHeader" class="navbar navbar-default navbar-fixed-top">
             <div class="col-sm-1">
                 <ul class="nav navbar-nav">
                     <li style="font-size: 2em;">@Html.ActionLink("Cradle", "Index", "Home")</li>
@@ -20,7 +20,7 @@
                 
             </div>
             <div class="col-sm-11">
-                <section id="login float-right">
+                <section id="login" class="float-right">
                     @Html.Partial("_LoginPartial")
                 </section>
             </div>
@@ -30,7 +30,7 @@
         <ul class="nav nav-pills menu-items col-sm-offset-3">
             <li>@Html.ActionLink(Resources.Resource.meetDesigner, "Designers", "Home")</li>
             <li>@Html.ActionLink(Resources.Resource.designs, "Lookbook", "Home")</li>
-            <li>@Html.ActionLink(Resources.Resource.justForYou, "Custom-Made", "Home")</li>
+            <li>@Html.ActionLink(Resources.Resource.justForYou, "Designers", "Home", new { filter = "custom-made" }, null)</li>
             <li>@Html.ActionLink(Resources.Resource.aboutUs, "About", "Home")</li>
         </ul>
     </div> 
