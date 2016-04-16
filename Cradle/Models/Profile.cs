@@ -11,7 +11,7 @@ namespace Cradle.Models
     {
         //Member:   This is the deliveryAddress
         //Designer: This is the businessAddress
-        public Address Address { get; set; }
+        public virtual Address Address { get; set; }
         public DateTime Birthdate { get; set; } //For designer role, this is date established
         public List<ContactNumber> ContactNumber { get; set; }
 

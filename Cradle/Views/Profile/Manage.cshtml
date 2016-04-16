@@ -1,19 +1,53 @@
 ﻿@model Cradle.Models.DesignerProfileViewModel
 
-<h3>Manage Profile</h3>
-@Model.DesignerName
-@Model.Tagline
-@Model.Email
-@Model.Address
+<div id="manageProfileDiv" class="body-container col-lg-12">
+    <div id="profileFormDiv" class="col-lg-10 col-lg-push-1">
+        <h3>Manage Your Profile</h3>
+        <h5>Your profile is @String.Format("{0:0}", @Model.ProfileCompletionPercentage)% complete</h5>
+        <div id="profilePictureDiv" class="col-lg-2 profileHeader">
 
-@foreach(string madeType in Model.MadeType)
-{
-    <label>@madeType</label><br/>
-}
+        </div>
+        <div id="profileHeading" class="col-lg-10 profileHeader">
+            <h2>@Model.Name, <small>@Model.Tagline</small></h2>
+            <h4>
+                @foreach (string madeType in Model.MadeType)
+                {
+                    @madeType
+                }
+            </h4>
+            <h5>@Model.Email</h5>
+            <h6>@Model.Address.ToString()</h6>
+            
+        </div>
+        <div id="profStats" class="col-lg-12">
+            Like: @Model.ProfStats.LikeCount
+        </div>
+        <div id="aboutDesignerDiv" class="col-lg-12 container">
+            <div class="col-lg-2 aboutDesignerDivContent">
+                <div class="form-group">
+                    <label class="control-label">About My Style</label>
+                </div>
+                <div class="form-group">
+                    <label class="control-label">Delivery Time</label>
+                </div>
 
-@foreach (string madeType in Model.DeliveryTime.Keys)
-{
-    <label>@Model.DeliveryTime[madeType]</label><br />
-}
+            </div>
+            <div class="col-lg-10 aboutDesignerDivContent">
+                <div class="form-group">
+                    <label class="control-label">@Model.StyleDescription</label>
+                </div>
+                <div class="form-group">
+                    @foreach (string madeType in Model.DeliveryTime.Keys)
+                    {
+                        <label>@Model.DeliveryTime[madeType] days</label><br />
+                    }
+                </div>
 
-@Html.ActionLink("Add Collection", "NewCollection", "Profile")
+            </div>
+        </div>
+
+        @Html.ActionLink("Add Collection", "NewCollection", "Profile")
+    </div>
+
+   
+</div>

@@ -23,7 +23,7 @@ namespace Cradle.Models
         public int CustomMadeMinDeliveryDays { get; set; }
         public int CustomMadeMaxDeliveryDays { get; set; }
         public List<Attire> AttireSpecialization { get; set; }
-        public Statistics ProfileStats { get; set; }
+        public virtual Statistics ProfileStats { get; set; }
         public List<Collection> Collection { get; set; }
 
         public virtual Account Account { get; set; }

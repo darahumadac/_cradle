@@ -5,7 +5,7 @@ using System.Web;
 using Microsoft.AspNet.Identity.EntityFramework;
 using System.Data.Entity;
 
-namespace Cradle.Models
+namespace Cradle.Models.Repository
 {
     public class CradleUserStore : UserStore<Account>
     {

@@ -5,6 +5,8 @@ VisualStudioVersion = 12.0.21005.1
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Cradle", "Cradle\Cradle.csproj", "{951EFAFB-384C-4C1D-9CDC-F67F2D0A0812}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Cradle.Tests", "Cradle.Tests\Cradle.Tests.csproj", "{E2190FBC-A1E4-4F28-A537-F69231F07B8E}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -15,6 +17,10 @@ Global
 		{951EFAFB-384C-4C1D-9CDC-F67F2D0A0812}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{951EFAFB-384C-4C1D-9CDC-F67F2D0A0812}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{951EFAFB-384C-4C1D-9CDC-F67F2D0A0812}.Release|Any CPU.Build.0 = Release|Any CPU
+		{E2190FBC-A1E4-4F28-A537-F69231F07B8E}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{E2190FBC-A1E4-4F28-A537-F69231F07B8E}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{E2190FBC-A1E4-4F28-A537-F69231F07B8E}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{E2190FBC-A1E4-4F28-A537-F69231F07B8E}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

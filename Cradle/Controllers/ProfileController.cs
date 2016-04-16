@@ -3,62 +3,43 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Web;
 using System.Web.Mvc;
-using Cradle.Models;
 using Microsoft.AspNet.Identity;
+using Cradle.Models;
+using Cradle.Models.Repository;
 
 namespace Cradle.Controllers
 {
     [Authorize]
     public class ProfileController : Controller
     {
-        private CradleDbContext _context;
 
-        public ProfileController()
+        public ProfileController() : this(new CradleProfileManager()){}
+
+        public ProfileController(IProfileManager profileManager)
         {
-            _context = new CradleDbContext();
+            ProfileManager = profileManager;
         }
-        //
+
+        public IProfileManager ProfileManager { get; set; }
+
         // GET: /Profile/
         public ActionResult Dashboard()
         {
             return View();
         }
 
-        
-        public ActionResult Manage(/*string designer*/)
+        //GET: Manage Profile page
+        public ActionResult Manage()
         {
-            DesignerProfile profile = _context.DesignerProfiles.Find(User.Identity.GetUserId());
-            if(profile != null && profile.DesignerProfileID == User.Identity.GetUserId())
+            //Dsiplay Profile
+            DesignerProfileViewModel designerViewModel 
+                = ProfileManager.GetDesignerProfile(User.Identity.GetUserId());
+            
+            if(designerViewModel != null)
             {
-                DesignerProfileViewModel designerViewModel = new DesignerProfileViewModel()
-                {
-                    DesignerName = profile.BusinessName,
-                    Tagline = profile.Tagline,
-                    Email = profile.BusinessEmailAddress,
-                    Address = profile.Address,
-                    MadeType = new List<string>(),
-                    DeliveryTime = new Dictionary<string,string>()
-                };
-                //string madeType = string.Empty;
-                if(profile.IsRTW)
-                {
-                    designerViewModel.MadeType.Add("RTW");
-                    designerViewModel.DeliveryTime.Add("RTW", profile.RTWMinDeliveryDays
-                        + " - " + profile.RTWMaxDeliveryDays);
-                }
-                if(profile.IsCustomMade)
-                {
-                    designerViewModel.MadeType.Add("Custom Made");
-                    designerViewModel.DeliveryTime.Add("Custom", profile.CustomMadeMinDeliveryDays
-                        + " - " + profile.CustomMadeMaxDeliveryDays);
-                }
-                
-                //Add code for setting DesignerProfile specialization here
-
-                //Add code for setting Price Range for designer (depends on the collection price range) here
-
                 return View(designerViewModel);
             }
+
             return RedirectToAction("Index", "Home");
         }
 

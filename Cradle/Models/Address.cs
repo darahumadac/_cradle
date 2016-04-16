@@ -17,6 +17,39 @@ namespace Cradle.Models
         public string Country { get; set; }
         public string ZipCode { get; set; }
 
+        public override string ToString()
+        {
+            string fullAddress = string.Empty;
+
+            if(StreetNo != null)
+            {
+                fullAddress += StreetNo;
+            }
+            if(!string.IsNullOrEmpty(StreetName))
+            {
+                fullAddress += StreetName + ", ";
+            }
+            if (!string.IsNullOrEmpty(Municipality))
+            {
+                fullAddress += Municipality + ", ";
+            }
+            if (!string.IsNullOrEmpty(City))
+            {
+                fullAddress += City + ", ";
+            }
+            if (!string.IsNullOrEmpty(Country))
+            {
+                fullAddress += Country + " ";
+            }
+            if (!string.IsNullOrEmpty(ZipCode))
+            {
+                fullAddress += ZipCode;
+            }
+
+            return fullAddress;
+           
+        }
+
 
     }
 }

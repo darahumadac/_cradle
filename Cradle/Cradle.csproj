@@ -206,8 +206,9 @@
     <Compile Include="Models\ContactNumber.cs">
       <SubType>Code</SubType>
     </Compile>
-    <Compile Include="Models\CradleUserManager.cs" />
-    <Compile Include="Models\CradleUserStore.cs" />
+    <Compile Include="Models\Repository\CradleProfileManager.cs" />
+    <Compile Include="Models\Repository\CradleUserManager.cs" />
+    <Compile Include="Models\Repository\CradleUserStore.cs" />
     <Compile Include="Models\Delivery.cs">
       <SubType>Code</SubType>
     </Compile>
@@ -246,6 +247,8 @@
       <SubType>Code</SubType>
     </Compile>
     <Compile Include="Models\ProfileViewModels.cs" />
+    <Compile Include="Models\Repository\IProfileManager.cs" />
+    <Compile Include="Models\Repository\ProfileResult.cs" />
     <Compile Include="Models\SearchResultViewModels.cs" />
     <Compile Include="Models\SecurityQuestion.cs" />
     <Compile Include="Models\Statistics.cs">

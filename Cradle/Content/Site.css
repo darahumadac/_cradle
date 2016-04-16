@@ -219,6 +219,35 @@ select {
     margin-top: 10px;
 }
 
+/*Profile Page styles */
+.profileHeader
+{
+    height: 150px;
+}
+
+#profileHeading
+{
+    background-color: #41002C; /*#410134;*/
+    color: white;
+}
+
+/*this is a temporary placeholder*/
+#profilePictureDiv 
+{
+    background-color: pink;
+}
+
+#aboutDesignerDiv 
+{
+    padding-left: 0px;
+    padding-top: 5px;
+}
+
+.aboutDesignerDivContent
+{
+    margin-top: 25px;
+}
+
 /*Start:    MVC Default Styles*/
 
 /* Set padding to keep content from hitting the edges */

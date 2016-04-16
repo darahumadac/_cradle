@@ -6,7 +6,7 @@ using Microsoft.AspNet.Identity;
 using System.Threading.Tasks;
 using System.Data.Entity;
 
-namespace Cradle.Models
+namespace Cradle.Models.Repository
 {
     public class CradleUserManager : UserManager<Account>
     {
