@@ -31,8 +31,9 @@ namespace Cradle
                       "~/Content/bootstrap-formhelpers.css"
                       ));
 
-            bundles.Add(new ScriptBundle("~/bundles/register").Include(
-                    "~/Scripts/register.js"
+            bundles.Add(new ScriptBundle("~/bundles/pagesJS").Include(
+                    "~/Scripts/register.js",
+                    "~/Scripts/profile.js"
                 ));
             bundles.Add(new ScriptBundle("~/bundles/formhelpers").Include(
                     "~/Scripts/bootstrap-formhelpers.js",

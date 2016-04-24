@@ -83,7 +83,7 @@ namespace Cradle.Controllers
                     {
                         if (!user.DesignerProfile.IsProfileComplete)
                         {
-                            return RedirectToAction("Manage", "Profile");
+                            return RedirectToAction("View", "Profile");
                         }
 
                         return RedirectToAction("Dashboard", "Profile");
@@ -186,9 +186,7 @@ namespace Cradle.Controllers
                         {
                             City = model.BusinessCity,
                             Country = model.BusinessCountry,
-                            Municipality = model.Municipality,
-                            StreetName = model.StreetName,
-                            StreetNo = model.StreetNo,
+                            StreetAddress = model.StreetAddress,
                             ZipCode = model.BusinessZipCode
 
                         };
@@ -223,7 +221,7 @@ namespace Cradle.Controllers
                     await SignInAsync(user, isPersistent: false);
                     if (!user.DesignerProfile.IsProfileComplete)
                     {
-                        return RedirectToAction("Manage", "Profile");
+                        return RedirectToAction("View", "Profile");
                     }
                     return RedirectToAction("Dashboard", "Profile");
 
@@ -359,7 +357,7 @@ namespace Cradle.Controllers
                 {
                     if(!user.DesignerProfile.IsProfileComplete)
                     {
-                        return RedirectToAction("Manage", "Profile");
+                        return RedirectToAction("View", "Profile");
                     }
 
                     return RedirectToAction("Dashboard", "Profile");
@@ -523,9 +521,7 @@ namespace Cradle.Controllers
                             {
                                 City = model.BusinessCity,
                                 Country = model.BusinessCountry,
-                                Municipality = model.Municipality,
-                                StreetName = model.StreetName,
-                                StreetNo = model.StreetNo,
+                                StreetAddress = model.StreetAddress,
                                 ZipCode = model.BusinessZipCode
 
                             };
@@ -750,9 +746,7 @@ namespace Cradle.Controllers
                 {
                     City = model.BusinessCity,
                     Country = model.BusinessCountry,
-                    Municipality = model.Municipality,
-                    StreetName = model.StreetName,
-                    StreetNo = model.StreetNo,
+                    StreetAddress = model.StreetAddress,
                     ZipCode = model.BusinessZipCode
 
                 };

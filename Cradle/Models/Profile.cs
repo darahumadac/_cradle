@@ -13,7 +13,7 @@ namespace Cradle.Models
         //Designer: This is the businessAddress
         public virtual Address Address { get; set; }
         public DateTime Birthdate { get; set; } //For designer role, this is date established
-        public List<ContactNumber> ContactNumber { get; set; }
+        public virtual List<ContactNumber> ContactNumber { get; set; }
 
     }
 }

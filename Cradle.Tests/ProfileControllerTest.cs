@@ -79,7 +79,7 @@ namespace Cradle.Tests
             InitializeProfileController(2); //Designer
 
             //Act
-            var result = _controller.Manage() as ViewResult;
+            var result = _controller.View() as ViewResult;
 
             //Assert
             Assert.IsNotNull(result.Model);
@@ -92,10 +92,12 @@ namespace Cradle.Tests
             InitializeProfileController(1);  //Member
 
             //Act
-            RedirectToRouteResult result = _controller.Manage() as RedirectToRouteResult;
+            RedirectToRouteResult result = _controller.View() as RedirectToRouteResult;
             
             //Assert
             Assert.AreEqual(result.RouteValues["action"], "Index");
         }
+
+     
     }
 }

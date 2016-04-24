@@ -28,8 +28,8 @@ namespace Cradle.Controllers
             return View();
         }
 
-        //GET: Manage Profile page
-        public ActionResult Manage()
+        //GET: View Profile page
+        public ActionResult View()
         {
             //Dsiplay Profile
             DesignerProfileViewModel designerViewModel 
@@ -69,24 +69,49 @@ namespace Cradle.Controllers
 
         //
         // GET: /Profile/Edit/5
-        public ActionResult Edit(int id)
+        public ActionResult Edit()
         {
-            return View();
+            ManageDesignerProfileViewModel manageProfileViewModel = new ManageDesignerProfileViewModel();
+            manageProfileViewModel = ProfileManager.GetDesignerInformation(User.Identity.GetUserId());
+            return View(manageProfileViewModel);
         }
 
         //
         // POST: /Profile/Edit/5
         [HttpPost]
-        public ActionResult Edit(int id, FormCollection collection)
+        [ValidateAntiForgeryToken]
+        public ActionResult Edit(ManageDesignerProfileViewModel model)
         {
             try
             {
-                // TODO: Add update logic here
+                if(ModelState.IsValid)
+                {
+                    if (TryUpdateModel(ProfileManager.GetPerson(User.Identity.GetUserId()),
+                        new string[] { "FirstName", "LastName", "BirthDate" }) &&
+                        TryUpdateModel(ProfileManager.GetPerson(User.Identity.GetUserId()).Address,
+                        new string[] {"City", "Country"}) &&
+                        TryUpdateModel(ProfileManager.GetDesigner(User.Identity.GetUserId()),
+                        new string[] { "BusinessName", "BusinessEmailAddress",
+                            "IsRTW", "IsCustomMade", "Tagline", "StyleDescription", 
+                            "RTWMinDeliveryDays", "RTWMaxDeliveryDays", "CustomMadeMinDeliveryDays", 
+                            "CustomMadeMaxDeliveryDays" }) &&
+                        TryUpdateModel(ProfileManager.GetDesigner(User.Identity.GetUserId()).Address,
+                        new string[] {"StreetAddress"}))
+                    {
+                        ProfileResult result = ProfileManager.UpdateDesignerProfile(User.Identity.GetUserId(), model);
+                    }
 
-                return RedirectToAction("Index");
+                    return RedirectToAction("View");
+                    
+                }
+                else
+                {
+                    return View(model);
+                }
             }
             catch
             {
+                ModelState.AddModelError("UpdateProfileError", "Unable to save changes.  Please try again.");
                 return View();
             }
         }

@@ -1,0 +1,307 @@
+﻿@model ManageDesignerProfileViewModel
+
+    <div class="container-fluid">
+        <nav id="profileNav" class="col-lg-3 nav">
+            <ul class=" nav nav-pills nav-stacked">
+                <li role="presentation" class="active">
+                    <a href="#personal">Personal Information</a>
+                </li>
+                <li role="presentation">
+                    <a href="#designerBasic">Designer Basic Information</a>
+                </li>
+                <li role="presentation">
+                    <a href="#designerStyle">Designer Style Information</a>
+                </li>
+            </ul>
+        </nav>
+    </div>
+
+    <div id="manageProfileDiv" class="body-container col-lg-9">
+        @using (Html.BeginForm("Edit", "Profile", FormMethod.Post,
+            new { @class = "form-horizontal", role = "form", @enctype = "multipart/form-data"}))
+        {
+            @Html.AntiForgeryToken()
+
+            <h3>Edit Your Profile</h3>
+            @Html.ValidationSummary()
+            <div id="profile">
+                @*Personal Information*@
+                <div id="personal" class="profile-div container-fluid pill-pane">
+                    <hr />
+                    <h4>Personal Information</h4>
+                    <hr />
+                    <div class="profile-contents">
+                        <div id="profilePicture">
+                            <div id="profilePictureDiv" class="col-lg-2 profileHeader img-thumbnail"></div>
+                        </div>
+                        <div class="form-group">
+                            <div class="col-lg-4">
+                                @Html.Label("profilePicture", "Profile Picture", new { @id = "profilePicLabel" })
+                                <input id="profilePicInput" type="file" name="profilePic" />
+                                <label id="helpUpload" class="help-block">Upload your profile picture</label>
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            @Html.LabelFor(m => m.FirstName, new { @class = "col-md-2 control-label" })
+                            <div class="col-md-3">
+                                @Html.TextBoxFor(m => m.FirstName, new { @class = "form-control" })
+                            </div>
+                            @Html.LabelFor(m => m.LastName, new { @class = "col-md-2 control-label" })
+                            <div class="col-md-5">
+                                @Html.TextBoxFor(m => m.LastName, new { @class = "form-control" })
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            @Html.LabelFor(m => m.City, new { @class = "col-md-2 control-label" })
+                            <div class="col-md-3">
+                                @Html.DropDownList("City", new List<SelectListItem>(),
+                            new
+                            {
+                                @class = "form-control bfh-states",
+                                @data_country = "countryDropdown",
+                                @data_state = Model.City
+                            })
+                            </div>
+                            @Html.LabelFor(m => m.Country, new { @class = "col-md-2 control-label" })
+                            <div class="col-md-5">
+                                @Html.DropDownList("Country", new List<SelectListItem>(),
+                            new
+                            {
+                                @id = "countryDropdown",
+                                @class = "input-medium form-control bfh-countries",
+                                @data_country = Model.Country
+                            })
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            @Html.LabelFor(m => m.MobileNo, new { @class = "col-md-2 control-label" })
+                            <div class="col-md-3">
+                                @Html.TextBoxFor(m => m.MobileNo,
+                            new
+                            {
+                                @id = "mobileNo",
+                                @class = "bfh-phone bfh-countries form-control",
+                                @data_country = "countryDropdown"
+                            })
+                            </div>
+                            @Html.LabelFor(m => m.BirthDate, new { @class = "col-md-2 control-label" })
+                            <div class="col-md-3">
+                                @Html.EditorFor(m => m.BirthDate, 
+                                new { @class = "form-control"})
+                            </div>
+                        </div>
+                    </div>
+
+                </div>
+
+                @*//Designer Basic Information*@
+                <div id="designerBasic" class="profile-div container-fluid pill-pane">
+                    <hr />
+                    <h4>Designer Basic Information</h4>
+                    <hr />
+                    <div class="profile-contents">
+                        <div class="form-group">
+                            @Html.LabelFor(m => m.BusinessName, new { @class = "col-md-2 control-label" })
+                            <div class="col-md-4">
+                                @Html.TextBoxFor(m => m.BusinessName, new { @class = "form-control" })
+                            </div>
+                            @Html.LabelFor(m => m.DateEstablished, new { @class = "col-md-3 control-label" })
+                            <div class="col-md-3">
+                                @Html.EditorFor(m => m.DateEstablished, 
+                                new { @class = "form-control"})
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            @Html.LabelFor(m => m.BusinessEmailAddress, new { @class = "col-md-2 control-label" })
+                            <div class="col-md-4">
+                                @Html.TextBoxFor(m => m.BusinessEmailAddress, new { @class = "form-control" })
+                            </div>
+
+                            @Html.Label("Made Type", new { @class = "col-md-3 control-label" })
+                            <div class="col-md-3">
+                                @Html.LabelFor(m => m.IsRTW)
+                                @Html.CheckBoxFor(m => m.IsRTW)
+                                @Html.LabelFor(m => m.IsCustomMade)
+                                @Html.CheckBoxFor(m => m.IsCustomMade)
+                            </div>
+
+                        </div>
+                        <div class="form-group">
+                            @Html.LabelFor(m => m.BusinessMobile, new { @class = "col-md-2 control-label" })
+                            <div class="col-md-4">
+                                @Html.TextBoxFor(m => m.BusinessMobile,
+                              new
+                              {
+                                  @id = "businessMobileNo",
+                                  @class = "bfh-phone bfh-countries form-control",
+                                  @data_country = "businessCountryDropdown"
+                              })
+                            </div>
+
+                            @Html.LabelFor(m => m.BusinessLandline, new { @class = "col-md-3 control-label" })
+                            <div class="col-md-3">
+                                @Html.TextBoxFor(m => m.BusinessLandline, new { @class = "form-control" })
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            @Html.LabelFor(m => m.StreetAddress, new { @class = "col-md-2 control-label" })
+                            <div class="col-md-5">
+                                @Html.TextBoxFor(m => m.StreetAddress, new { @class = "form-control" })
+                            </div>
+                            @Html.LabelFor(m => m.BusinessCity, new { @class = "col-md-2 control-label" })
+                            <div class="col-md-3">
+                                @Html.DropDownList("BusinessCity", new List<SelectListItem>(),
+                            new
+                            {
+                                @class = "form-control bfh-states",
+                                @data_country = "businessCountryDropdown",
+                                @data_state = Model.BusinessCity
+                            })
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            @Html.LabelFor(m => m.BusinessCountry, new { @class = "col-md-2 control-label" })
+                            <div class="col-md-5">
+                                @Html.DropDownList("BusinessCountry", new List<SelectListItem>(),
+                            new { @id = "businessCountryDropdown", @class = "input-medium form-control bfh-countries", @data_country = "PH", @data_available = "PH" })
+                            </div>
+                            @Html.LabelFor(m => m.BusinessZipCode, new { @class = "col-md-2 control-label" })
+                            <div class="col-md-2">
+                                @Html.TextBoxFor(m => m.BusinessZipCode, new { @class = "form-control" })
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                @*//Designer Style Information*@
+                <div id="designerStyle" class="profile-div container-fluid pill-pane">
+                    <hr />
+                    <h4>Designer Style Information</h4>
+                    <hr />
+                    <div class="profile-contents">
+                        <div class="form-group">
+                            @Html.LabelFor(m => m.Tagline, new { @class = "col-md-2 control-label" })
+                            <div class="col-md-5">
+                                @Html.TextBoxFor(m => m.Tagline, new { @class = "form-control" })
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            @Html.LabelFor(m => m.StyleDescription, new { @class = "col-md-2 control-label" })
+                            <div class="col-md-5">
+                                @Html.TextAreaFor(m => m.StyleDescription, new { @class = "form-control" })
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            @Html.LabelFor(m => m.Specialization, new { @class = "col-md-2 control-label" })
+                            <div class="col-md-5">
+                                @for (int i = 0; i < Model.Specialization.Count; i++)
+                                {
+                                    @Html.CheckBoxFor(m => m.Specialization[i].IsSelected)
+                                    @Html.DisplayFor(m => m.Specialization[i].Attire)
+                                    @Html.HiddenFor(m => m.Specialization[i].Attire)
+                                    <br />
+                                }
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            @Html.Label("Delivery Time", new { @class = "col-md-2 control-label" })
+                            @{
+                                List<SelectListItem> days = new List<SelectListItem>();
+                                for (int i = 1; i <= 30; i++)
+                                {
+                                    days.Add(new SelectListItem() { Text = i.ToString(), Value = i.ToString() });
+                                }
+                                days[0].Selected = true;
+                            }
+                            @{
+                                string noMadeType = string.Empty;
+                                if (Model.IsCustomMade == true || Model.IsRTW == true)
+                                {
+                                    noMadeType = "hidden";
+                                }
+                            }
+                               
+                            <label id="noMadeTypeSelected" class="help-block @noMadeType form-control-static">
+                                No made type selected.  Please select at least one made type.
+                            </label>
+                            
+                            <div class="col-md-5">
+                                @{
+                                    string deliveryRTW = string.Empty;
+                                    string deliveryCustom = string.Empty;
+                                    
+                                    if(!Model.IsCustomMade)
+                                    {
+                                        deliveryCustom = "hidden";
+                                    }
+                                    
+                                    if (!Model.IsRTW)
+                                    {
+                                        deliveryRTW = "hidden";
+                                    }
+            
+                                }
+
+                                <div id="rtwOption" class="form-group @deliveryRTW">
+                                    <div class="col-md-2 control-label">
+                                        @Html.Label("RTW")
+                                    </div>
+                                    <div class="col-md-2">
+                                        @Html.DropDownListFor(m => m.RTWMinDeliveryDays, days)
+                                    </div>
+                                    <div class="col-md-1 control-label">
+                                        @Html.Label("to")
+                                    </div>
+                                    <div class="col-md-2">
+                                        @Html.DropDownListFor(m => m.RTWMaxDeliveryDays, days)
+                                    </div>
+                                    <div class="col-md-1 control-label">
+                                        days
+                                    </div>
+                                </div>
+                                   
+                                <div id="customMadeOption" class="form-group @deliveryCustom">
+                                    <div class="col-md-2 control-label">
+                                        @Html.Label("Custom Made")
+                                    </div>
+                                    <div class="col-md-2">
+                                        @Html.DropDownListFor(m => m.CustomMadeMinDeliveryDays, days)
+                                    </div>
+                                    <div class="col-md-1 control-label">
+                                        @Html.Label("to")
+                                    </div>
+                                    <div class="col-md-2">
+                                        @Html.DropDownListFor(m => m.CustomMadeMaxDeliveryDays, days)
+                                    </div>
+                                    <div class="col-md-1 control-label">
+                                        days
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            @*//Register Button*@
+                <div id="submitBtn" class="col-mg-6">
+                    <div class="form-group">
+                        <div class="col-md-10">
+                            <input type="submit" class="btn btn-default" value="Save Changes" />
+                        </div>
+                    </div>
+                </div>
+            
+        }
+
+    </div>
+
+
+
+@section Scripts {
+    @Scripts.Render("~/bundles/jqueryval")
+    @Scripts.Render("~/bundles/formhelpers")
+    @Scripts.Render("~/bundles/pagesJS")
+
+}
+
+

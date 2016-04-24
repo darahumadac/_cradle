@@ -1,0 +1,226 @@
+﻿@model Cradle.Models.DesignerProfileViewModel
+
+<div id="manageProfileDiv" class="body-container col-lg-12">
+    <div id="profileFormDiv" class="col-lg-10 col-lg-push-1">
+        <h3>
+            Your Profile
+            <span class="hidden">@Model.ProfileCompletionPercentage</span>
+        </h3>
+        @if(Model.IsProfileComplete == false)
+        {
+            <div class="alert alert-warning alert-dismissable row" role="alert">
+                <button type="button" class="close" data-dismiss="alert" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+                <span class="glyphicon glyphicon-exclamation-sign"></span> 
+                Supply the following information to complete your profile and start adding collections <br />
+                <ul>
+                    @foreach (string field in @Model.IncompleteFields)
+                    {
+                       <li>@field</li>
+                    }
+                </ul>
+            </div>
+            
+            <div class="progress row">
+                <div class="progress-bar progress-bar-success" role="progressbar" aria-valuenow="@Model.ProfileCompletionPercentage" aria-valuemin="0" aria-valuemax="100" style="width: @Model.ProfileCompletionPercentage%">
+                   Your profile is @Model.ProfileCompletionPercentage% complete
+                </div>
+            </div>
+        }
+        
+        <div class="row">
+            <div id="profilePictureDiv" class="col-lg-2 profileHeader img-thumbnail"></div>
+            <div id="profileHeading" class="col-lg-10 profileHeader">
+                <div id="profDetails" class="row col-lg-12">
+                    <h2 id="nameHeading">@Model.Name 
+                        @if(string.IsNullOrWhiteSpace(@Model.Tagline))
+                        {
+                            <small>
+                                <span class="editLabel">
+                                    <a href="/Profile/Edit">Add Your Tagline</a>
+                                    <span class="glyphicon glyphicon-pencil"></span>
+                                </span>
+                            </small>
+                            
+                        }
+                        else
+                        {
+                            @Html.Encode(",") <small id="taglineHeading">@Model.Tagline</small>
+                        }
+                        
+                    </h2>
+                    <h4 id="madeTypeHeading">
+                        @foreach (string madeType in Model.Made_Type)
+                        {
+                           @madeType
+                            
+                            if(Model.Made_Type.Last() != madeType)
+                            {
+                                @Html.Encode(" / ");
+                            }
+                            
+                        }
+                    </h4>
+                    <h5 class="contactDetailsHeading">
+                        @Model.Email / 
+                        @if(string.IsNullOrWhiteSpace(@Model.Contact_Numbers[0].MobileNo))
+                        {
+                            @Model.Contact_Numbers[0].LandlineNo @Html.Encode(" / ")
+                            <span class="editLabel">
+                                <a href="/Profile/Edit">Add Your Mobile Number</a>
+                                    <span class="glyphicon glyphicon-pencil"></span>
+                            </span>
+                        }
+                        else
+                        {
+                            @Model.Contact_Numbers[0].CountryCodeMobile@Model.Contact_Numbers[0].MobileNo @Html.Encode(" / ")
+                            if(string.IsNullOrWhiteSpace(@Model.Contact_Numbers[0].LandlineNo))
+                            {
+                                <span class="editLabel">
+                                    <a href="/Profile/Edit">Add Your Landline Number</a>
+                                    <span class="glyphicon glyphicon-pencil"></span>
+                                </span>
+                            }
+                            else
+                            {
+                                @Model.Contact_Numbers[0].LandlineNo
+                            }
+                        }
+                    </h5>
+                    <h6 class="contactDetailsHeading">@Model.Address.ToString()</h6>
+                </div>
+                <div id="profStats" class="row">
+                    <ul id="statisticsList" class="nav nav-pills">
+                        <li role="presentation">
+                            <a href="#">
+                                <span id="star" class="glyphicon glyphicon-star"></span>
+                                @Model.ProfStats.AveRating / 5 Rating
+                            </a>
+                        </li>
+                        <li role="presentation">
+                            <a href="#">
+                                <span id="heart" class="glyphicon glyphicon-heart"></span>
+                                @Model.ProfStats.LikeCount Likes
+                            </a>
+                        </li>
+                        <li role="presentation">
+                            <a id="lastStat" href="#">
+                                <span id="cart" class="glyphicon glyphicon-shopping-cart"></span>
+                                @Model.Collections.Count Collections
+                                <span id="collectionInfo" class="glyphicon glyphicon-question-sign"
+                                      data-toggle="tooltip" data-placement="right" 
+                                      title="Complete your profile to add collection"></span>
+                            </a>
+                            
+                        </li>
+                        @if(@Model.IsProfileComplete)
+                        {
+                            <li id="addCollectionOption">
+                                <a href="/Profile/NewCollection">
+                                    <span id="eye" class="glyphicon glyphicon-plus-sign"></span>
+                                    Add Collection
+                                </a>
+                            </li>
+                        }
+                        
+                        @*<li role="presentation">
+                            <a id="views" href="#">
+                                <span id="eye" class="glyphicon glyphicon-eye-open"></span>
+                                @Model.ProfStats.ViewCount Views
+                            </a>
+                        </li>*@
+                    </ul>
+                </div>
+            </div>
+            
+        </div>
+        @*<hr />*@
+        @*  About Designer *@
+        <h3>About @Model.Name</h3>
+        <hr/>
+        <div id="aboutDesignerDiv" class="row">
+            <div class="aboutDesignerDivContent container">
+                <div class="aboutLabel col-lg-2">
+                    <label class="control-label">Date Established</label>
+                </div>
+                <div class="col-lg-10">
+                    <label class="control-label">@Model.DateEstablished.ToShortDateString()</label>
+                </div>
+            </div>
+            <div class="aboutDesignerDivContent container">
+                <div class="aboutLabel col-lg-2">
+                    <label class="control-label">About My Style</label>
+                </div>
+                <div class="col-lg-10">
+                    @if (string.IsNullOrWhiteSpace(@Model.Style_Description))
+                    {
+                         <div class="editLabel">
+                             <a href="/Profile/Edit">Add Your Style Description</a>
+                                 <span class="glyphicon glyphicon-pencil"></span>
+</div>
+                    }
+                    else
+                    {
+                        <label class="control-label">@Model.Style_Description</label>
+                    }
+                </div>
+            </div>
+            <div class="aboutDesignerDivContent container">
+                <div class="aboutLabel col-lg-2">
+                    <label class="control-label">Specialization</label>
+                </div>
+                <div class="col-lg-10">
+                    @if(string.IsNullOrWhiteSpace(@Model.Specialization))
+                    {
+                        <div class="editLabel">
+                            <a href="/Profile/Edit">Add Your Specialization</a>
+                                <span class="glyphicon glyphicon-pencil"></span>
+</div>
+                    }else
+                    {
+                        <label class="control-label">@Model.Specialization</label>
+                    }
+                </div>
+            </div>
+            <div class="aboutDesignerDivContent container">
+                <div class="aboutLabel col-lg-2">
+                    <label class="control-label">Delivery Time</label>
+                </div>
+                <div class="col-lg-10">
+                    @foreach (string madeType in Model.Made_Type)
+                    {
+                        
+                        if(@Model.Delivery_Time.Keys.FirstOrDefault(k => k.Equals(madeType)) != null)
+                        {
+                            <label>@madeType:</label>
+                            <label>@Model.Delivery_Time[madeType] days</label>
+                        }
+                        else
+                        {
+                            <div class="editLabel">
+                                @madeType:   Add Delivery Time
+                                <span class="glyphicon glyphicon-pencil"></span>
+                            </div>
+                             
+                        }
+                        <br />
+                    }
+                </div>
+            </div>
+        </div>
+        
+        <hr/>
+        @*  Designer Collection *@
+        <h3>
+            @Model.Name's Collections
+            @if(@Model.Collections.Count == 0)
+            {
+                <small>No collections yet</small>
+            }
+        </h3>
+        <hr />
+    </div>
+</div>
+
+@section Scripts{
+    @Scripts.Render("~/bundles/pagesJS")
+}

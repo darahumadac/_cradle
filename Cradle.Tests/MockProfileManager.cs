@@ -6,6 +6,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using System.ComponentModel.DataAnnotations;
 
 namespace Cradle.Tests
 {
@@ -38,7 +39,28 @@ namespace Cradle.Tests
            
         }
 
-        public ProfileResult UpdateDesignerProfile(DesignerProfileViewModel profile)
+        public ManageDesignerProfileViewModel GetDesignerInformation(string userId)
+        {
+            throw new NotImplementedException();
+        }
+
+        public ProfileResult UpdateDesignerProfile(ManageDesignerProfileViewModel profile)
+        {
+            throw new NotImplementedException();
+        }
+
+
+        public ProfileResult UpdateDesignerProfile(string userId, ManageDesignerProfileViewModel profile)
+        {
+            throw new NotImplementedException();
+        }
+
+        public DesignerProfile GetDesigner(string userId)
+        {
+            throw new NotImplementedException();
+        }
+
+        public PersonalProfile GetPerson(string userId)
         {
             throw new NotImplementedException();
         }

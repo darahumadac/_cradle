@@ -194,6 +194,18 @@
     <Compile Include="Migrations\201604130919275_AddedNewDesignerProfileFields.Designer.cs">
       <DependentUpon>201604130919275_AddedNewDesignerProfileFields.cs</DependentUpon>
     </Compile>
+    <Compile Include="Migrations\201604170624444_AddDesignerAttireTable.cs" />
+    <Compile Include="Migrations\201604170624444_AddDesignerAttireTable.Designer.cs">
+      <DependentUpon>201604170624444_AddDesignerAttireTable.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201604181025268_ChangedAddressToStreetAddress.cs" />
+    <Compile Include="Migrations\201604181025268_ChangedAddressToStreetAddress.Designer.cs">
+      <DependentUpon>201604181025268_ChangedAddressToStreetAddress.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201604231315106_AddIsActiveInAttire.cs" />
+    <Compile Include="Migrations\201604231315106_AddIsActiveInAttire.Designer.cs">
+      <DependentUpon>201604231315106_AddIsActiveInAttire.cs</DependentUpon>
+    </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Models\Account.cs" />
     <Compile Include="Models\AccountViewModels.cs" />
@@ -206,6 +218,7 @@
     <Compile Include="Models\ContactNumber.cs">
       <SubType>Code</SubType>
     </Compile>
+    <Compile Include="Models\DesignerAttire.cs" />
     <Compile Include="Models\Repository\CradleProfileManager.cs" />
     <Compile Include="Models\Repository\CradleUserManager.cs" />
     <Compile Include="Models\Repository\CradleUserStore.cs" />
@@ -275,6 +288,7 @@
     <Content Include="img\216H.jpg" />
     <Content Include="img\233H.jpg" />
     <Content Include="img\bootstrap-social.png" />
+    <Content Include="img\no-image.gif" />
     <Content Include="img\science87.png" />
     <Content Include="Scripts\bootstrap-formhelpers-countries.js" />
     <Content Include="Scripts\bootstrap-formhelpers-datepicker.js" />
@@ -296,6 +310,7 @@
     <Content Include="Scripts\jquery.validate.min.js" />
     <Content Include="Scripts\jquery.validate.unobtrusive.js" />
     <Content Include="Scripts\jquery.validate.unobtrusive.min.js" />
+    <Content Include="Scripts\profile.js" />
     <Content Include="Scripts\modernizr-2.6.2.js" />
     <Content Include="Scripts\register.js" />
     <Content Include="Scripts\respond.js" />
@@ -332,8 +347,9 @@
     <Content Include="Views\Home\Designers.cshtml" />
     <Content Include="Views\Home\Lookbook.cshtml" />
     <Content Include="Views\Profile\Dashboard.cshtml" />
-    <Content Include="Views\Profile\Manage.cshtml" />
+    <Content Include="Views\Profile\View.cshtml" />
     <Content Include="Views\Profile\NewCollection.cshtml" />
+    <Content Include="Views\Profile\Edit.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
@@ -363,6 +379,15 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Migrations\201604130919275_AddedNewDesignerProfileFields.resx">
       <DependentUpon>201604130919275_AddedNewDesignerProfileFields.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201604170624444_AddDesignerAttireTable.resx">
+      <DependentUpon>201604170624444_AddDesignerAttireTable.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201604181025268_ChangedAddressToStreetAddress.resx">
+      <DependentUpon>201604181025268_ChangedAddressToStreetAddress.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201604231315106_AddIsActiveInAttire.resx">
+      <DependentUpon>201604231315106_AddIsActiveInAttire.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Resources\Resource.en-US.resx" />
     <EmbeddedResource Include="Resources\Resource.resx">

@@ -36,7 +36,7 @@ namespace Cradle.Models
         public string LastName { get; set; }
 
         [Required]
-        [Display(Name = "City")]
+        [Display(Name = "State/Province")]
         public string City { get; set; }
 
         [Required]
@@ -60,16 +60,10 @@ namespace Cradle.Models
         [Display(Name = "Designer Label Name")]
         public string BusinessName { get; set; }
 
-        [Display(Name = "Street No.")]
-        public string StreetNo { get; set; }
+        [Display(Name = "Street Address")]
+        public string StreetAddress { get; set; }
 
-        [Display(Name = "Street Name")]
-        public string StreetName { get; set; }
-
-        [Display(Name = "Barangay")]
-        public string Municipality { get; set; }
-
-        [Display(Name = "City/Province")]
+        [Display(Name = "State/Province")]
         public string BusinessCity { get; set; }
 
         [Display(Name = "Main Country of Operation")]
@@ -86,7 +80,7 @@ namespace Cradle.Models
         [DataType(DataType.PhoneNumber)]
         public string BusinessMobile { get; set; }
 
-        [Display(Name = "Business Landline Number")]
+        [Display(Name = "Landline Number")]
         [DataType(DataType.PhoneNumber)]
         public string BusinessLandline { get; set; }
 
@@ -134,20 +128,10 @@ namespace Cradle.Models
                     validationResults.Add(new ValidationResult("At least 1 Desginer Label Contact Number is required",
                         new[] { "BusinessMobile" }));
                 }
-                if (String.IsNullOrEmpty(StreetNo))
+                if (String.IsNullOrEmpty(StreetAddress))
                 {
-                    validationResults.Add(new ValidationResult("Street No. is required",
-                        new[] { "StreetNo" }));
-                }
-                if (String.IsNullOrEmpty(StreetName))
-                {
-                    validationResults.Add(new ValidationResult("Street Name is required",
-                        new[] { "StreetName" }));
-                }
-                if (String.IsNullOrEmpty(Municipality))
-                {
-                    validationResults.Add(new ValidationResult("Municipality is required",
-                        new[] { "Municipality" }));
+                    validationResults.Add(new ValidationResult("Street Address is required",
+                        new[] { "StreetAddress" }));
                 }
                 if (String.IsNullOrEmpty(BusinessCity))
                 {
@@ -158,6 +142,11 @@ namespace Cradle.Models
                 {
                     validationResults.Add(new ValidationResult("Zip Code is required",
                         new[] { "BusinessZipCode" }));
+                }
+                if (IsCustomMade == false && IsRTW == false)
+                {
+                    validationResults.Add(new ValidationResult("Choose at least one made type",
+                        new[] { "IsCustomMade" }));
                 }
 
 

@@ -220,21 +220,141 @@ select {
 }
 
 /*Profile Page styles */
+.progress
+{
+    height: 25px;
+    margin-bottom: 5px;
+}
+.progress-bar
+{
+    font-size: 16px;
+}
+.alert
+{
+    margin-bottom: 5px;
+}
+.profileCompleteMsg
+{
+    font-size: 14px;
+}
+
 .profileHeader
 {
-    height: 150px;
+    height: 200px;
 }
 
 #profileHeading
 {
-    background-color: #41002C; /*#410134;*/
+
+    background-color: #2A2628;
+    color: #CDD1D6;
+}
+
+#nameHeading
+{
+    letter-spacing: 5px;
+    text-transform: uppercase;
+    color: #35AFCB;
+}
+
+#taglineHeading
+{
+    color: #9FA2A8;
+}
+
+#madeTypeHeading
+{
+    margin-top: 15px;
+    margin-bottom: 0px;
+}
+
+.contactDetailsHeading
+{
+    margin-top: 5px;
+    margin-bottom: 0px;
+}
+
+.contactDetailsHeading, #madeTypeHeading
+{
+    letter-spacing: 1px;
+}
+
+#profDetails
+{
+    margin-bottom: 10px;
+    margin-top: 10px;
+}
+
+#profStats
+{
+    background-color: black;
+    height: 50px;
+    padding-top: 5px;
+}
+
+#profStats a
+{
+    text-transform: uppercase;
+    letter-spacing: 2px;
     color: white;
+    border-radius: 0;
+    border-right: 1px solid;
+}
+
+#profStats a#lastStat
+{
+    border: none;
+}
+
+#addCollectionOption
+{
+    float: right;
+}
+
+#addCollectionOption a
+{
+    border-right: none;
+}
+
+#profStats a:hover, #profStats a:focus
+{
+    color: #82C0F0;
+}
+
+#profStats .nav > li > a:hover, .nav > li > a:focus
+{
+    background-color: black;
+}
+
+#star
+{
+    color: yellow;
+}
+
+#heart
+{
+    color: #E3006F;
+}
+
+#cart
+{
+    color: #3BA3D0;
+}
+
+#eye
+{
+    color: #96F36E;
+}
+
+#collectionInfo
+{
+    color: #024A68;
 }
 
 /*this is a temporary placeholder*/
 #profilePictureDiv 
 {
-    background-color: pink;
+    background: url('../img/no-image.gif') no-repeat;
 }
 
 #aboutDesignerDiv 
@@ -245,7 +365,80 @@ select {
 
 .aboutDesignerDivContent
 {
-    margin-top: 25px;
+    margin-top: 15px;
+    text-align: justify;
+    padding-left: 0px;
+}
+
+.aboutLabel
+{
+    text-transform: uppercase;
+}
+
+.editLabel, .editLabel a
+{
+    color: #C0C0C0;
+    cursor: pointer;
+    text-transform: none;
+}
+
+.editLabel:hover, .editLabel label:hover, .editLabel a:hover
+{
+    text-decoration: underline;
+    color: blue;
+    cursor: pointer;
+}
+
+/* Edit Profile Styles */
+
+#profileNav
+{
+    height: 567px;
+}
+
+#profileNav a
+{
+    border-radius: 0;
+    text-align: center;
+}
+
+#profileNav a:active, #profileNav a:hover
+{
+    color: #ffffff;
+    background-color: #428bca;
+    
+}
+
+#profileNav .nav-pills > li.active > a, 
+#profileNav .nav-pills > li.active > a:focus
+{
+    background-color: #2A2628;
+}
+
+.profile-div{
+    padding: 10px 0px;
+}
+
+#profilePicInput
+{
+    margin-top: 30px;
+    padding-left: 10px;
+}
+
+#helpUpload
+{
+    display: inline;
+    padding-left: 10px;
+}
+
+#profilePicLabel
+{
+    padding-left: 10px;
+}
+
+.profile-contents {
+    margin-top: 35px;
+    padding-bottom: 35px;
 }
 
 /*Start:    MVC Default Styles*/

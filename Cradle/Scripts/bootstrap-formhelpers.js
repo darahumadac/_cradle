@@ -8050,7 +8050,7 @@ var BFHPhoneFormatList = {
   'PG': '+675 ddddddddd',
   'PY': '+595 ddddddddd',
   'PE': '+51 ddddddddd',
-  'PH': '+63 ddddddddd',
+  'PH': '+63 dddddddddd',
   'PN': '+870 ddddddddd',
   'PL': '+48 ddddddddd',
   'PT': '+351 ddddddddd',
@@ -11399,7 +11399,8 @@ var BFHStatesList = {
     '24' : {'code':'TU','name':'Tumbes'},
     '25' : {'code':'UC','name':'Ucayali'}
   },
-  'PH':{
+  'PH': {
+    '0' : {'code': 'MEM', 'name': 'Metro Manila' },
     '1' : {'code':'ABR','name':'Abra'},
     '2' : {'code':'ANO','name':'Agusan del Norte'},
     '3' : {'code':'ASU','name':'Agusan del Sur'},

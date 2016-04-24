@@ -9,7 +9,10 @@ namespace Cradle.Models.Repository
     public interface IProfileManager
     {
         DesignerProfileViewModel GetDesignerProfile(string userId);
-        ProfileResult UpdateDesignerProfile(DesignerProfileViewModel profile);
+        ManageDesignerProfileViewModel GetDesignerInformation(string userId);
+        ProfileResult UpdateDesignerProfile(string userId, ManageDesignerProfileViewModel profile);
+        DesignerProfile GetDesigner(string userId);
+        PersonalProfile GetPerson(string userId);
 
     }
 }

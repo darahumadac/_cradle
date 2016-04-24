@@ -14,5 +14,7 @@ namespace Cradle.Models
         public decimal MaxPrice{ get; set; }
         public List<Item> CollectionItems { get; set; }
 
+        public virtual DesignerProfile DesignerProfile { get; set; }
+
     }
 }

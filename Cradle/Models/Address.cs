@@ -10,9 +10,10 @@ namespace Cradle.Models
     public class Address
     {
         public int AddressID { get; set; }
-        public string StreetNo { get; set; }
-        public string StreetName { get; set; }
-        public string Municipality { get; set; }
+        public string StreetAddress { get; set; }
+        //public string StreetNo { get; set; }
+        //public string StreetName { get; set; }
+        //public string Municipality { get; set; }
         public string City { get; set; }
         public string Country { get; set; }
         public string ZipCode { get; set; }
@@ -21,17 +22,9 @@ namespace Cradle.Models
         {
             string fullAddress = string.Empty;
 
-            if(StreetNo != null)
+            if (!string.IsNullOrEmpty(StreetAddress))
             {
-                fullAddress += StreetNo;
-            }
-            if(!string.IsNullOrEmpty(StreetName))
-            {
-                fullAddress += StreetName + ", ";
-            }
-            if (!string.IsNullOrEmpty(Municipality))
-            {
-                fullAddress += Municipality + ", ";
+                fullAddress += StreetAddress + ", ";
             }
             if (!string.IsNullOrEmpty(City))
             {
