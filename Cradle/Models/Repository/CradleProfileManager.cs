@@ -2,11 +2,12 @@
 using System;
 using System.Collections.Generic;
 using System.Data;
+using System.IO;
 using System.Linq;
 using System.Reflection;
 using System.Web;
 using System.Web.Mvc;
-
+using Drawing = System.Drawing;
 
 namespace Cradle.Models.Repository
 {
@@ -147,7 +148,17 @@ namespace Cradle.Models.Repository
             ProfileResult result = null;
             try
             {
-                
+
+                Image currentProfilePic = GetDesigner(userId).ProfilePicture;
+                if(currentProfilePic != null && profile.ProfilePicture != null)
+                {
+                    _context.Images.Remove(GetDesigner(userId).ProfilePicture);
+                }
+                if(profile.ProfilePicture != null)
+                {
+                    GetDesigner(userId).ProfilePicture = profile.ProfilePicture;
+                }
+
                 //Update Personal mobile number
                 string[] mobileNoParts = profile.MobileNo.Split(' ');
                 if (!String.IsNullOrWhiteSpace(mobileNoParts[1]))
@@ -336,5 +347,24 @@ namespace Cradle.Models.Repository
 
             return isComplete;
         }
+
+
+        public byte[] GetDesignerProfilePicture(string userId)
+        {
+            Image profilePictureObj = GetDesigner(userId).ProfilePicture;
+            byte[] profilePicture;
+
+            if(profilePictureObj != null)
+            {
+                profilePicture = profilePictureObj.Picture;
+            }
+            else
+            {
+                profilePicture = null;
+            }
+             
+            return profilePicture;
+        }
+
     }
 }

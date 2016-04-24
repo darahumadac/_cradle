@@ -64,5 +64,11 @@ namespace Cradle.Tests
         {
             throw new NotImplementedException();
         }
+
+
+        public byte[] GetDesignerProfilePicture(string userId)
+        {
+            throw new NotImplementedException();
+        }
     }
 }

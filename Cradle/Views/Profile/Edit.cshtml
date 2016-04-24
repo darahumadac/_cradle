@@ -18,12 +18,23 @@
 
     <div id="manageProfileDiv" class="body-container col-lg-9">
         @using (Html.BeginForm("Edit", "Profile", FormMethod.Post,
-            new { @class = "form-horizontal", role = "form", @enctype = "multipart/form-data"}))
+            new { @id = "profileEditForm", @class = "form-horizontal", role = "form", @enctype = "multipart/form-data"}))
         {
             @Html.AntiForgeryToken()
 
             <h3>Edit Your Profile</h3>
-            @Html.ValidationSummary()
+            
+            if(ViewBag.UpdateSuccessful != null && ViewBag.UpdateSuccessful)
+            {
+                <div id="validation-success" class="alert alert-success" role="alert">
+                    <span class="glyphicon glyphicon-ok" aria-hidden="true"></span>
+                  <strong>Well done!</strong> You successfully updated your profile.
+                </div>
+            }
+
+            @Html.ValidationSummary("Please correct the following inputs:",
+                 new { @id = "validation-error", @class = "alert alert-danger", @role = "alert" })
+            
             <div id="profile">
                 @*Personal Information*@
                 <div id="personal" class="profile-div container-fluid pill-pane">
@@ -32,7 +43,11 @@
                     <hr />
                     <div class="profile-contents">
                         <div id="profilePicture">
-                            <div id="profilePictureDiv" class="col-lg-2 profileHeader img-thumbnail"></div>
+                            @*<div id="profilePictureDiv" class="col-lg-2 profileHeader img-thumbnail"></div>*@
+                            @*<div class="col-lg-2 profileHeader img-thumbnail">*@
+                            @*<img id="profilePictureImg" class="col-lg-2 img-thumbnail" src="/Profile/RetrieveImage" />*@
+                            @*</div>*@
+                            <img id="profilePictureImg" class="col-lg-2 img-thumbnail" src="/Profile/RetrieveImage"/>
                         </div>
                         <div class="form-group">
                             <div class="col-lg-4">

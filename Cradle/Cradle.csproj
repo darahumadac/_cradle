@@ -206,6 +206,14 @@
     <Compile Include="Migrations\201604231315106_AddIsActiveInAttire.Designer.cs">
       <DependentUpon>201604231315106_AddIsActiveInAttire.cs</DependentUpon>
     </Compile>
+    <Compile Include="Migrations\201604240723483_AddProfilePictureField.cs" />
+    <Compile Include="Migrations\201604240723483_AddProfilePictureField.Designer.cs">
+      <DependentUpon>201604240723483_AddProfilePictureField.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201604240800377_TransferProfilePicturetoDesigner.cs" />
+    <Compile Include="Migrations\201604240800377_TransferProfilePicturetoDesigner.Designer.cs">
+      <DependentUpon>201604240800377_TransferProfilePicturetoDesigner.cs</DependentUpon>
+    </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Models\Account.cs" />
     <Compile Include="Models\AccountViewModels.cs" />
@@ -219,6 +227,7 @@
       <SubType>Code</SubType>
     </Compile>
     <Compile Include="Models\DesignerAttire.cs" />
+    <Compile Include="Models\Image.cs" />
     <Compile Include="Models\Repository\CradleProfileManager.cs" />
     <Compile Include="Models\Repository\CradleUserManager.cs" />
     <Compile Include="Models\Repository\CradleUserStore.cs" />
@@ -388,6 +397,12 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Migrations\201604231315106_AddIsActiveInAttire.resx">
       <DependentUpon>201604231315106_AddIsActiveInAttire.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201604240723483_AddProfilePictureField.resx">
+      <DependentUpon>201604240723483_AddProfilePictureField.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201604240800377_TransferProfilePicturetoDesigner.resx">
+      <DependentUpon>201604240800377_TransferProfilePicturetoDesigner.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Resources\Resource.en-US.resx" />
     <EmbeddedResource Include="Resources\Resource.resx">

@@ -306,15 +306,16 @@ select {
     border: none;
 }
 
-#addCollectionOption
+#addCollectionOption, #editProfileOption
 {
     float: right;
 }
 
-#addCollectionOption a
+#addCollectionOption a, #editProfileOption a
 {
     border-right: none;
-}
+}*
+
 
 #profStats a:hover, #profStats a:focus
 {
@@ -352,9 +353,15 @@ select {
 }
 
 /*this is a temporary placeholder*/
-#profilePictureDiv 
+/*#profilePictureDiv 
 {
     background: url('../img/no-image.gif') no-repeat;
+}*/
+#profilePictureImg
+{
+    height: 200px;
+    width: 156px;
+    padding: 0px;
 }
 
 #aboutDesignerDiv 

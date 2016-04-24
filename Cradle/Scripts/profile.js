@@ -36,4 +36,9 @@
         }
     }
 
+    $('#profileEditForm').submit(function () {
+        $('#validation-success').remove();
+    });
+   
+ 
 })

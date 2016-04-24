@@ -15,6 +15,7 @@ namespace Cradle.Models
         public string Material { get; set; }
         public decimal RegularPrice { get; set; }
         public decimal DiscountedPrice { get; set; }
+        public virtual Image ItemImage { get; set; }
 
     }
 }

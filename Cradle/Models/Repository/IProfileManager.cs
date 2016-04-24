@@ -13,6 +13,7 @@ namespace Cradle.Models.Repository
         ProfileResult UpdateDesignerProfile(string userId, ManageDesignerProfileViewModel profile);
         DesignerProfile GetDesigner(string userId);
         PersonalProfile GetPerson(string userId);
+        byte[] GetDesignerProfilePicture(string userId);
 
     }
 }

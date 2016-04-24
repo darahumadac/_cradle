@@ -37,6 +37,7 @@ namespace Cradle.Models
         public DbSet<PersonalProfile> PersonalProfiles { get; set; }
         public DbSet<Address> Addresses { get; set; }
         public DbSet<ContactNumber> ContactNumbers { get; set; }
+        public DbSet<Image> Images { get; set; }
 
         protected override void OnModelCreating(DbModelBuilder modelBuilder)
         {

@@ -3,9 +3,11 @@ using System;
 using System.Collections.Generic;
 using System.ComponentModel;
 using System.ComponentModel.DataAnnotations;
+using System.IO;
 using System.Linq;
 using System.Reflection;
 using System.Web;
+using Drawing = System.Drawing;
 
 namespace Cradle.Models
 {
@@ -20,6 +22,7 @@ namespace Cradle.Models
 
     public class DesignerProfileViewModel : BaseProfileViewModel
     {
+        public Image ProfilePicture { get; set; }
         private List<string> _incompleteFields = new List<string>();
         private DateTime _dateEstablished;
         private string[] _fields = new string[]{"Name", "Email", "Address", "Contact_Numbers",
@@ -91,6 +94,9 @@ namespace Cradle.Models
     public class ManageDesignerProfileViewModel : BaseProfileViewModel, IValidatableObject
     {
         #region Personal Profile
+
+        public Image ProfilePicture { get; set; }
+
         [Required]
         [Display(Name = "First Name")]
         public string FirstName { get; set; }

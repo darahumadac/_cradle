@@ -6,6 +6,7 @@ using System.Web.Mvc;
 using Microsoft.AspNet.Identity;
 using Cradle.Models;
 using Cradle.Models.Repository;
+using System.IO;
 
 namespace Cradle.Controllers
 {
@@ -86,6 +87,7 @@ namespace Cradle.Controllers
             {
                 if(ModelState.IsValid)
                 {
+                    
                     if (TryUpdateModel(ProfileManager.GetPerson(User.Identity.GetUserId()),
                         new string[] { "FirstName", "LastName", "BirthDate" }) &&
                         TryUpdateModel(ProfileManager.GetPerson(User.Identity.GetUserId()).Address,
@@ -98,16 +100,31 @@ namespace Cradle.Controllers
                         TryUpdateModel(ProfileManager.GetDesigner(User.Identity.GetUserId()).Address,
                         new string[] {"StreetAddress"}))
                     {
+                        HttpPostedFileBase pictureUpload = Request.Files["profilePic"];
+                        if(!string.IsNullOrWhiteSpace(pictureUpload.FileName) && pictureUpload.ContentLength > 0)
+                        {
+                            model.ProfilePicture = new Image()
+                            {
+                                CreatedDate = DateTime.UtcNow,
+                                UpdatedDate = DateTime.UtcNow,
+                                Picture = ConvertImageToBytes(pictureUpload)
+                            };
+                        }
+                        
+                        
                         ProfileResult result = ProfileManager.UpdateDesignerProfile(User.Identity.GetUserId(), model);
                     }
 
-                    return RedirectToAction("View");
+                    ViewBag.UpdateSuccessful = true;
                     
                 }
                 else
                 {
-                    return View(model);
+                    ViewBag.UpdateSuccessful = false;
                 }
+
+                return View(model);
+
             }
             catch
             {
@@ -137,6 +154,27 @@ namespace Cradle.Controllers
             catch
             {
                 return View();
+            }
+        }
+
+        private byte[] ConvertImageToBytes(HttpPostedFileBase image)
+        {
+            byte[] imageBytes = null;
+            BinaryReader reader = new BinaryReader(image.InputStream);
+            imageBytes = reader.ReadBytes((int)image.ContentLength);
+            return imageBytes;
+        }
+
+        public ActionResult RetrieveImage()
+        {
+            byte[] cover = ProfileManager.GetDesignerProfilePicture(User.Identity.GetUserId());
+            if (cover != null)
+            {
+                return File(cover, "image/jpg");
+            }
+            else
+            {
+                return File("/img/no-image.gif", "image/jpg");
             }
         }
     }

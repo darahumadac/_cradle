@@ -11,6 +11,7 @@ namespace Cradle.Models
     public class DesignerProfile : Profile
     {
         public string DesignerProfileID { get; set; }
+        public virtual Image ProfilePicture { get; set; }
         public string BusinessName { get; set; }
         public string BusinessEmailAddress { get; set; }
         public bool IsProfileComplete { get; set; }
