@@ -28,6 +28,7 @@ namespace Cradle.Models.Repository
             {
                 designerViewModel = new DesignerProfileViewModel()
                 {
+                    Username = profile.Account.UserName,
                     Name = profile.BusinessName,
                     Tagline = profile.Tagline,
                     Email = profile.BusinessEmailAddress,
@@ -41,6 +42,16 @@ namespace Cradle.Models.Repository
                     Made_Type = new List<string>(),
                     Delivery_Time = new Dictionary<string, string>()
                 };
+
+                if(profile.Account.UserName == HttpContext.Current.User.Identity.Name 
+                    && HttpContext.Current.User.Identity.IsAuthenticated)
+                {
+                    designerViewModel.IsCurrentUser = true;
+                }
+                else
+                {
+                    designerViewModel.IsCurrentUser = false;
+                }
 
                 if (profile.IsRTW)
                 {
@@ -252,9 +263,6 @@ namespace Cradle.Models.Repository
                 //Add error
             }
 
-            
-
-            
             return result;
 
         }
@@ -364,6 +372,20 @@ namespace Cradle.Models.Repository
             }
              
             return profilePicture;
+        }
+
+        public string GetUserId(string username)
+        {
+            Account user = _context.Users.FirstOrDefault( u => 
+                u.UserName.Equals(username, StringComparison.InvariantCultureIgnoreCase));
+            if( user != null)
+            {
+                return user.Id;
+            }
+            else
+            {
+                return string.Empty;
+            }
         }
 
     }

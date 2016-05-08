@@ -448,6 +448,31 @@ select {
     padding-bottom: 35px;
 }
 
+/*Designer List page styles*/
+.designer-snapshot{
+    margin: 50px 0px;
+}
+
+#profilePictureHeadshot
+{
+    height: 150px;
+    width: 150px;
+}
+
+#designerInfo h3{
+    margin: 5px 0px;
+}
+
+.search-options
+{
+    border-top: 1px solid black;
+}
+
+.search-options:last-of-type
+{
+    border-bottom: 1px solid black;
+}
+
 /*Start:    MVC Default Styles*/
 
 /* Set padding to keep content from hitting the edges */

@@ -220,6 +220,7 @@
     <Compile Include="Models\Address.cs">
       <SubType>Code</SubType>
     </Compile>
+    <Compile Include="Models\Measurement.cs" />
     <Compile Include="Models\Collection.cs">
       <SubType>Code</SubType>
     </Compile>
@@ -228,6 +229,7 @@
     </Compile>
     <Compile Include="Models\DesignerAttire.cs" />
     <Compile Include="Models\Image.cs" />
+    <Compile Include="Models\Repository\CradleHomeManager.cs" />
     <Compile Include="Models\Repository\CradleProfileManager.cs" />
     <Compile Include="Models\Repository\CradleUserManager.cs" />
     <Compile Include="Models\Repository\CradleUserStore.cs" />
@@ -269,8 +271,10 @@
       <SubType>Code</SubType>
     </Compile>
     <Compile Include="Models\ProfileViewModels.cs" />
+    <Compile Include="Models\Repository\IHomeManager.cs" />
     <Compile Include="Models\Repository\IProfileManager.cs" />
     <Compile Include="Models\Repository\ProfileResult.cs" />
+    <Compile Include="Models\SearchCriteria.cs" />
     <Compile Include="Models\SearchResultViewModels.cs" />
     <Compile Include="Models\SecurityQuestion.cs" />
     <Compile Include="Models\Statistics.cs">
@@ -312,6 +316,7 @@
     <Content Include="fonts\Caviar_Dreams_Bold.ttf" />
     <Content Include="fonts\fontawesome-webfont.ttf" />
     <None Include="Scripts\jquery-1.10.2.intellisense.js" />
+    <Content Include="Scripts\designers.js" />
     <Content Include="Scripts\jquery-1.10.2.js" />
     <Content Include="Scripts\jquery-1.10.2.min.js" />
     <None Include="Scripts\jquery.validate-vsdoc.js" />

@@ -14,6 +14,7 @@ namespace Cradle.Models.Repository
         DesignerProfile GetDesigner(string userId);
         PersonalProfile GetPerson(string userId);
         byte[] GetDesignerProfilePicture(string userId);
+        string GetUserId(string userId);
 
     }
 }

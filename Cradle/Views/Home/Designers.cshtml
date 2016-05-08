@@ -1,7 +1,125 @@
 ﻿@model List<DesignerResultsViewModel>
 
-@foreach(DesignerResultsViewModel designer in Model)
-{
-    @designer.DesignerName <br/>
-}
+<div id="designerListDiv" class="body-container col-lg-12">
+    <div class="col-lg-3">
+        <div>
+           @using(Html.BeginForm("Designers", "Home", FormMethod.Post, 
+               new { @class = "form-horizontal", role = "form" }))
+            {
+               @Html.AntiForgeryToken()
+               
+                <h4>Customize a Search</h4>
+                <div class="search-options">
+                    <p>Recommended for Your Build</p>
+                    <div>
+                        <div class="form-group col-lg-12">
+                            @Html.Label("Body Build", new { @class = "col-lg-5 control-label" })
+                            <div class="col-lg-7">
+                                @Html.DropDownList("BodyBuild", new List<SelectListItem>()
+                                {
+                                    new SelectListItem(){ Text = "Petite", Value = "P"},
+                                    new SelectListItem(){ Text = "Plus Size", Value = "PS"},
+                                }, new { @class = "form-control", @name = "BodyType" })
+                            </div>
+                            
+                        </div>
+                    </div>
+                </div>
+                <div class="search-options">
+                    <p>According to Your Measurements</p>
+                    <div>
+                        <div class="form-group col-lg-12">
+                            @Html.Label("Height", new { @class = "col-lg-7" })
+                            <div class="col-lg-3">
+                                <input type="number" name="BodyMeasurements.Height" value="48" min="10" max="100" />
+                            </div>
+                            @Html.Label("in", new { @class = "col-lg-1" })
+                        </div>
+                        <div class="form-group col-lg-12">
+                            @Html.Label("Waistline", new { @class = "col-lg-7" })
+                            <div class="col-lg-3">
+                                <input type="number" name="BodyMeasurements.Waistline" value="15" min="10" max="100" />
+                            </div>
+                            @Html.Label("in", new { @class = "col-lg-1" })
+                        </div>
+                        <div class="form-group col-lg-12">
+                            @Html.Label("Bust", new { @class = "col-lg-7" })
+                            <div class="col-lg-3">
+                                <input type="number" name="BodyMeasurements.Bust" value="15" min="10" max="100" />
+                            </div>
+                            @Html.Label("in", new { @class = "col-lg-1" })
+                        </div>
+                        <div class="form-group col-lg-12">
+                            @Html.Label("Arm Length", new { @class = "col-lg-7" })
+                            <div class="col-lg-3">
+                                <input type="number" name="BodyMeasurements.ArmLength" value="15" min="10" max="100" />
+                            </div>
+                            @Html.Label("in", new { @class = "col-lg-1" })
+                        </div>
+                        <div class="form-group col-lg-12">
+                            @Html.Label("Arm Width", new { @class = "col-lg-7" })
+                            <div class="col-lg-3">
+                                <input type="number" name="BodyMeasurements.ArmWidth" value="15" min="10" max="100" />
+                            </div>
+                            @Html.Label("in", new { @class = "col-lg-1" })
+                        </div>
+                        <div class="form-group col-lg-12">
+                            @Html.Label("Leg Length", new { @class = "col-lg-7" })
+                            <div class="col-lg-3">
+                                <input type="number" name="BodyMeasurements.LegLength" value="15" min="10" max="100" />
+                            </div>
+                            @Html.Label("in", new { @class = "col-lg-1" })
+                        </div>
+                        <div class="form-group col-lg-12">
+                            @Html.Label("Leg Width", new { @class = "col-lg-7" })
+                            <div class="col-lg-3">
+                                <input type="number" name="BodyMeasurements.LegWidth" value="15" min="10" max="100" />
+                            </div>
+                            @Html.Label("in", new { @class = "col-lg-1" })
+                        </div>
+                    </div>
+                </div>
+                <div class="search-options">
+                    <p>Within Your Budget</p>
+                    <div>
+                        @Html.Label("Budget Limit", new { @class = "col-lg-6" })
+                        <span id="budgetLimit" class="col-lg-5">₱ 500.00</span>
+                        <input type="range" name="Budget" class="col-lg-12" value="500" min="300" max="15000" />
+                    </div>
+                </div>
+                <div class="search-options">
+                    <p>Suited Your Style</p>
+                </div>
+                <input type="submit" class="btn btn-default" value="Search" />
+            }
+        </div>
+    </div>
+    <div class="col-lg-9">
+        @foreach (DesignerResultsViewModel designer in Model)
+        {
+            <div class="designer-snapshot col-lg-6">
+                <img id="profilePictureHeadshot" class="col-lg-7" src="/Profile/RetrieveImage/@designer.Username" />
+                <div id="designerInfo" class="col-lg-6">
+                    <h3>@Html.ActionLink(designer.DesignerName, "View", "Profile", new { id = designer.Username}, null)</h3>
+                    <p>@designer.City, @designer.Country</p>
+                    <p>@designer.Tagline</p>
+                    @*<p class="form-control-static">@designer.StyleDescription</p>*@
+                    <p>@designer.CollectionCount Collection(s)</p>
+                    @if (designer.IsCustomMade)
+                    {
 
+                        @*<span class="glyphicon glyphicon-star"></span>*@
+                        <h6>Designer/Consulatant</h6>
+                    }
+                </div>
+            </div>
+
+        }
+    </div>
+
+</div>
+
+@section Scripts {
+    @Scripts.Render("~/bundles/jqueryval")
+    @Scripts.Render("~/Scripts/register.js")
+}

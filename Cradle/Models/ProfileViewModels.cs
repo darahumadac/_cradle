@@ -22,6 +22,8 @@ namespace Cradle.Models
 
     public class DesignerProfileViewModel : BaseProfileViewModel
     {
+        public bool IsCurrentUser { get; set; }
+        public string Username { get; set; }
         public Image ProfilePicture { get; set; }
         private List<string> _incompleteFields = new List<string>();
         private DateTime _dateEstablished;

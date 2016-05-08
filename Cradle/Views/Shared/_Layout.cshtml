@@ -30,7 +30,7 @@
         <ul class="nav nav-pills menu-items col-sm-offset-3">
             <li>@Html.ActionLink(Resources.Resource.meetDesigner, "Designers", "Home")</li>
             <li>@Html.ActionLink(Resources.Resource.designs, "Lookbook", "Home")</li>
-            <li>@Html.ActionLink(Resources.Resource.justForYou, "Designers", "Home", new { filter = "custom-made" }, null)</li>
+            <li>@Html.ActionLink(Resources.Resource.justForYou, "Designers", "Home", new { DesignerType = "custom-made" }, null)</li>
             <li>@Html.ActionLink(Resources.Resource.aboutUs, "About", "Home")</li>
         </ul>
     </div> 

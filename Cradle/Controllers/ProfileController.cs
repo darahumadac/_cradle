@@ -30,18 +30,31 @@ namespace Cradle.Controllers
         }
 
         //GET: View Profile page
-        public ActionResult View()
+        public ActionResult View(string id)
         {
-            //Dsiplay Profile
-            DesignerProfileViewModel designerViewModel 
-                = ProfileManager.GetDesignerProfile(User.Identity.GetUserId());
-            
-            if(designerViewModel != null)
+            if(!string.IsNullOrWhiteSpace(id))
             {
-                return View(designerViewModel);
+                id = ProfileManager.GetUserId(id);
+            }
+            else
+            {
+                id = User.Identity.GetUserId();
             }
 
-            return RedirectToAction("Index", "Home");
+            if(!string.IsNullOrWhiteSpace(id))
+            {
+                //Dsiplay Profile
+                DesignerProfileViewModel designerViewModel
+                    = ProfileManager.GetDesignerProfile(id);
+
+                if (designerViewModel != null)
+                {
+                    return View(designerViewModel);
+                }
+            }
+                      
+            return RedirectToAction("Index", "Home"); 
+            
         }
 
         //
@@ -165,17 +178,28 @@ namespace Cradle.Controllers
             return imageBytes;
         }
 
-        public ActionResult RetrieveImage()
+        [AllowAnonymous]
+        public ActionResult RetrieveImage(string id)
         {
-            byte[] cover = ProfileManager.GetDesignerProfilePicture(User.Identity.GetUserId());
-            if (cover != null)
+            if (string.IsNullOrWhiteSpace(id))
             {
-                return File(cover, "image/jpg");
+                id = User.Identity.GetUserId();
             }
             else
             {
-                return File("/img/no-image.gif", "image/jpg");
+                id = ProfileManager.GetUserId(id);
             }
+
+            if(!string.IsNullOrWhiteSpace(id))
+            {
+                byte[] cover = ProfileManager.GetDesignerProfilePicture(id);
+                if (cover != null)
+                {
+                    return File(cover, "image/jpg");
+                }
+            }
+            
+            return File("/img/no-image.gif", "image/jpg");
         }
     }
 }
